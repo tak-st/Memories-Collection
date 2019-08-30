@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Memories-Collection</string>
     <string name="hallo_world">Hallo World</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
