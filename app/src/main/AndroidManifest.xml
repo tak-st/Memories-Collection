@@ -1,25 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.memories_collection">
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name
-        ="android.permission.WRITE_EXTERNAL_STORAGE"/>
-import java.io.*;
-    import java.nio.*;
-    import java .util.*;
-    import android.app.*;
-    import android.content.*;
-    import android..content.pm.*;
-    import android.media.*;
-    import android.os.*;
-    import android.util.*;
-    import android.view.*;
-    import android.view.View.*;
-    import android.widget.*;
-    import android.graphics.*;
-    import android.hardware.camera2.*;
-    import android.hardware.camera2.params.*;
-    pulic class Sample4 extends Activity{
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -28,9 +12,11 @@ import java.io.*;
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".CameraActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
