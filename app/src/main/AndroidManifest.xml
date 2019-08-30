@@ -4,6 +4,22 @@
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name
         ="android.permission.WRITE_EXTERNAL_STORAGE"/>
+import java.io.*;
+    import java.nio.*;
+    import java .util.*;
+    import android.app.*;
+    import android.content.*;
+    import android..content.pm.*;
+    import android.media.*;
+    import android.os.*;
+    import android.util.*;
+    import android.view.*;
+    import android.view.View.*;
+    import android.widget.*;
+    import android.graphics.*;
+    import android.hardware.camera2.*;
+    import android.hardware.camera2.params.*;
+    pulic class Sample4 extends Activity{
 
     <application
         android:allowBackup="true"
