@@ -7,8 +7,8 @@
     tools:context=".collectionActivity">
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="398dp"
+        android:layout_height="721dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,21 +18,24 @@
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="86dp"
             android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="125dp"
-                android:layout_height="wrap_content"
-                android:text="@string/ハードキャストされたテキスト" />
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="265dp"
-                android:layout_height="54dp"
+                android:layout_width="261dp"
+                android:layout_height="match_parent"
                 android:text="@string/コレクション"
-                android:textSize="30sp" />
+                android:textSize="36sp" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@android:drawable/ic_popup_sync"
+                android:contentDescription="@string/todo" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -42,35 +45,38 @@
 
             <ImageButton
                 android:id="@+id/imageButton1"
-                android:layout_width="wrap_content"
+                android:layout_width="25dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                app:srcCompat="@android:color/transparent"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/f2132" />
 
             <ImageButton
                 android:id="@+id/imageButton2"
-                android:layout_width="wrap_content"
+                android:layout_width="25dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                app:srcCompat="@android:color/transparent"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/frame2" />
 
             <ImageButton
                 android:id="@+id/imageButton3"
-                android:layout_width="wrap_content"
+                android:layout_width="25dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                app:srcCompat="@android:color/transparent"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/frame1" />
 
             <ImageButton
                 android:id="@+id/imageButton4"
                 android:layout_width="wrap_content"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                app:srcCompat="@android:color/transparent"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                app:srcCompat="@android:color/transparent" />
 
         </LinearLayout>
 
@@ -81,35 +87,38 @@
 
             <ImageButton
                 android:id="@+id/imageButton5"
-                android:layout_width="wrap_content"
+                android:layout_width="25dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                app:srcCompat="@android:color/transparent"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                android:scaleType="center"
+                app:srcCompat="@drawable/img01" />
 
             <ImageButton
                 android:id="@+id/imageButton6"
-                android:layout_width="wrap_content"
+                android:layout_width="25dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                app:srcCompat="@android:color/transparent"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                android:scaleType="center"
+                app:srcCompat="@drawable/img02" />
 
             <ImageButton
                 android:id="@+id/imageButton7"
-                android:layout_width="wrap_content"
+                android:layout_width="25dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                app:srcCompat="@android:color/transparent"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                android:scaleType="center"
+                app:srcCompat="@drawable/img04" />
 
             <ImageButton
                 android:id="@+id/imageButton8"
                 android:layout_width="wrap_content"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                app:srcCompat="@android:color/transparent"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                app:srcCompat="@android:color/transparent" />
         </LinearLayout>
 
         <LinearLayout
@@ -119,35 +128,35 @@
 
             <ImageButton
                 android:id="@+id/imageButton9"
-                android:layout_width="wrap_content"
+                android:layout_width="25dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                app:srcCompat="@android:color/transparent"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                app:srcCompat="@drawable/img08" />
 
             <ImageButton
                 android:id="@+id/imageButton10"
-                android:layout_width="wrap_content"
+                android:layout_width="25dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                app:srcCompat="@android:color/transparent"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                app:srcCompat="@drawable/img09" />
 
             <ImageButton
                 android:id="@+id/imageButton11"
                 android:layout_width="wrap_content"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                app:srcCompat="@android:color/transparent"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                app:srcCompat="@android:color/transparent" />
 
             <ImageButton
                 android:id="@+id/imageButton12"
-                android:layout_width="wrap_content"
+                android:layout_width="25dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                app:srcCompat="@android:color/transparent"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                app:srcCompat="@drawable/img12" />
         </LinearLayout>
 
         <LinearLayout
@@ -157,35 +166,35 @@
 
             <ImageButton
                 android:id="@+id/imageButton13"
-                android:layout_width="wrap_content"
+                android:layout_width="25dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                app:srcCompat="@android:color/transparent"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                app:srcCompat="@drawable/img11" />
 
             <ImageButton
                 android:id="@+id/imageButton14"
                 android:layout_width="wrap_content"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                app:srcCompat="@android:color/transparent"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                app:srcCompat="@android:color/transparent" />
 
             <ImageButton
                 android:id="@+id/imageButton15"
                 android:layout_width="wrap_content"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                app:srcCompat="@android:color/transparent"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                app:srcCompat="@android:color/transparent" />
 
             <ImageButton
                 android:id="@+id/imageButton16"
                 android:layout_width="wrap_content"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                app:srcCompat="@android:color/transparent"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                app:srcCompat="@android:color/transparent" />
         </LinearLayout>
 
         <LinearLayout
@@ -198,32 +207,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                app:srcCompat="@android:color/transparent"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                app:srcCompat="@android:color/transparent" />
 
             <ImageButton
                 android:id="@+id/imageButton18"
                 android:layout_width="wrap_content"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                app:srcCompat="@android:color/transparent"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                app:srcCompat="@android:color/transparent" />
 
             <ImageButton
                 android:id="@+id/imageButton19"
                 android:layout_width="wrap_content"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                app:srcCompat="@android:color/transparent"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                app:srcCompat="@android:color/transparent" />
 
             <ImageButton
                 android:id="@+id/imageButton20"
                 android:layout_width="wrap_content"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                app:srcCompat="@android:color/transparent"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                app:srcCompat="@android:color/transparent" />
         </LinearLayout>
     </LinearLayout>
 
