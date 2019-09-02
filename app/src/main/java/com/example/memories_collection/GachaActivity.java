@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class GachaActivity extends AppCompatActivity {
 
-    int coin = 100;
+    int coin = 1000;
     private int power = 1;
 
     @Override
@@ -71,7 +71,7 @@ public class GachaActivity extends AppCompatActivity {
             coin -= power;
             TextView tv = findViewById(R.id.textView);
             tv.setText(String.valueOf(coin));
-            if (randomValue < 90 - (power * 0.6)) {
+            if (randomValue < 90 - (power * 0.9)) {
                 builder.setMessage("N");
             } else if (randomValue < 99 - (power * 0.3)) {
                 builder.setMessage("R");
