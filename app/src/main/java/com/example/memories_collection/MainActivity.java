@@ -3,6 +3,8 @@ package com.example.memories_collection;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -12,7 +14,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.CameraUpdate;
 
-public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MainActivity extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener {
 
     private GoogleMap mMap;
 
@@ -24,7 +26,30 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        int percent = 0;
+        ProgressBar bar = (ProgressBar) findViewById(R.id.progressBar);
+        //bar.setMax(100);
+        //bar.setProgress(percent,true);
+        //bar.setMin(0);
+        findViewById(R.id.imageButton).setOnClickListener(this);
     }
+
+    @Override
+    public void onClick(View view) {
+        if (view != null) {
+            switch (view.getId()) {
+                case R.id.imageButton:
+                    //動作確認用、その打ち消す(マーカーを和歌山湾辺りに一つ増やすコード)
+                    mMap.addMarker(new MarkerOptions().position(new LatLng(34, 135)).title("Markerrrrrrrrrrrrrrrr"));
+                    //  設定画面を開く処理
+
+                    break;
+
+                //多分戻るボタンとかもいる？
+            }
+        }
+    }
+
 
 
     /**
@@ -40,12 +65,16 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+
         // Add a marker in ecc and move the camera
         LatLng ecc = new LatLng(34.706463, 135.503209);
         mMap.addMarker(new MarkerOptions().position(ecc).title("Marker in ecc"));
+
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ecc));
         CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom(
                 new LatLng(34.706463, 135.503209), 12);
+
         mMap.moveCamera(cUpdate);
     }
+
 }
