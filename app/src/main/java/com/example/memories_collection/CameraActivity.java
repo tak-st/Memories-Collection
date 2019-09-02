@@ -36,7 +36,7 @@ import java.util.Locale;
 
 
 
-public class MainActivity extends AppCompatActivity {
+public class CameraActivity extends AppCompatActivity {
 
     private final static int RESULT_CAMERA = 1001;
     private final static int REQUEST_PERMISSION = 1002;
@@ -48,27 +48,26 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("debug","onCreate()");
+        Log.d("debug", "onCreate()");
         setContentView(R.layout.activity_main);
 
         imageView = findViewById(R.id.image_view);
 
-        Button cameraButton = findViewById(R.id.camera_button);
+        Button cameraButton = findViewById(R.id.cameraButton);
         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Android 6, API 23以上でパーミッシンの確認
                 if (Build.VERSION.SDK_INT >= 23) {
                     checkPermission();
-                }
-                else {
+                } else {
                     cameraIntent();
                 }
             }
         });
     }
 
-    private void cameraIntent(){
+    private void cameraIntent() {
         // 保存先のフォルダー
         File cFolder = getExternalFilesDir(Environment.DIRECTORY_DCIM);
 
@@ -80,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         cameraFile = new File(cFolder, fileName);
 
         cameraUri = FileProvider.getUriForFile(
-                MainActivity.this,
+                CameraActivity.this,
                 getApplicationContext().getPackageName() + ".fileprovider",
                 cameraFile);
 
@@ -88,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(MediaStore.EXTRA_OUTPUT, cameraUri);
         startActivityForResult(intent, RESULT_CAMERA);
 
-        Log.d("debug","startActivityForResult()");
+        Log.d("debug", "startActivityForResult()");
     }
 
     @Override
@@ -97,13 +96,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode == RESULT_CAMERA) {
 
-            if(cameraUri != null){
+            if (cameraUri != null) {
                 imageView.setImageURI(cameraUri);
 
                 registerDatabase(cameraFile);
-            }
-            else{
-                Log.d("debug","cameraUri == null");
+            } else {
+                Log.d("debug", "cameraUri == null");
             }
         }
     }
@@ -111,23 +109,23 @@ public class MainActivity extends AppCompatActivity {
     // アンドロイドのデータベースへ登録する
     private void registerDatabase(File file) {
         ContentValues contentValues = new ContentValues();
-        ContentResolver contentResolver = MainActivity.this.getContentResolver();
+        ContentResolver contentResolver = CameraActivity.this.getContentResolver();
         contentValues.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
         contentValues.put("_data", file.getAbsolutePath());
         contentResolver.insert(
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,contentValues);
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
     }
 
     // Runtime Permission check
-    private void checkPermission(){
+    private void checkPermission() {
         // 既に許可している
         if (ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
-                PackageManager.PERMISSION_GRANTED){
+                PackageManager.PERMISSION_GRANTED) {
             cameraIntent();
         }
         // 拒否していた場合
-        else{
+        else {
             requestPermission();
         }
     }
@@ -136,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
     private void requestPermission() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            ActivityCompat.requestPermissions(MainActivity.this,
+            ActivityCompat.requestPermissions(CameraActivity.this,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     REQUEST_PERMISSION);
 
@@ -174,3 +172,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+}
