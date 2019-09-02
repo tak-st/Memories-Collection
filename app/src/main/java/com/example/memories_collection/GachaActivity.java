@@ -46,9 +46,9 @@ public class GachaActivity extends AppCompatActivity {
             coin -= 1;
             TextView tv = findViewById(R.id.textView);
             tv.setText(String.valueOf(coin));
-            if (randomValue < 90 - (power * 0.7)) {
+            if (randomValue < 90 - (power * 0.6)) {
                 builder.setMessage("N");
-            } else if (randomValue < 99 - (power * 0.2)) {
+            } else if (randomValue < 99 - (power * 0.3)) {
                 builder.setMessage("R");
             } else {
                 builder.setMessage("SR");
