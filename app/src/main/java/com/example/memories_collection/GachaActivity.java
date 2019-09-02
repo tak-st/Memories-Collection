@@ -40,33 +40,42 @@ public class GachaActivity extends AppCompatActivity {
         Random random = new Random();
         int randomValue = random.nextInt(100);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        coin -= 1;
-        TextView tv = findViewById(R.id.textView);
-        tv.setText(String.valueOf(coin));
-        if (randomValue < 90 - (power * 0.7)) {
-            builder.setMessage("N");
-        } else if (randomValue < 99 - (power * 0.2)) {
-            builder.setMessage("R");
-        } else {
-            builder.setMessage("SR");
-        }
-        power = 0;
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
+        if (coin <= 0) {
 
+        } else {
+            coin -= 1;
+            TextView tv = findViewById(R.id.textView);
+            tv.setText(String.valueOf(coin));
+            if (randomValue < 90 - (power * 0.7)) {
+                builder.setMessage("N");
+            } else if (randomValue < 99 - (power * 0.2)) {
+                builder.setMessage("R");
+            } else {
+                builder.setMessage("SR");
             }
-        });
-        builder.show();
+            power = 0;
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+
+                }
+            });
+            builder.show();
+        }
     }
 
     private void gachaLongClickEvent(View v) {
         if (power == 98) {
 
         } else {
-            coin -= 1;
-            power += 1;
-            TextView tv = findViewById(R.id.textView);
-            tv.setText(String.valueOf(coin));
+            if (coin <= 0) {
+
+            } else {
+                coin -= 1;
+                power += 1;
+                TextView tv = findViewById(R.id.textView);
+                tv.setText(String.valueOf(coin));
+
+            }
         }
 
     }
