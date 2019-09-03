@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="default_albumart">
-        <item>@drawable/f2132</item>
-        <item>@drawable/frame1</item>
-        <item>@drawable/frame2</item>
-        <item>@drawable/img01</item>
-        <item>@drawable/img02</item>
-        <item>@drawable/img03</item>
-        <item>@drawable/img04</item>
-        <item>@drawable/img05</item>
-        <item>@drawable/img06</item>
-        <item>@drawable/img07</item>
-        <item>@drawable/img08</item>
-        <item>@drawable/img09</item>
-        <item>@drawable/img10</item>
-        <item>@drawable/img11</item>
-        <item>@drawable/img12</item>
+        <item>@+id/imageView1</item>
+        <item>@+id/imageView2</item>
+        <item>@+id/imageView3</item>
+        <item>@+id/imageView4</item>
+        <item>@+id/imageView5</item>
+        <item>@+id/imageView6</item>
+        <item>@+id/imageView7</item>
+        <item>@+id/imageView8</item>
+        <item>@+id/imageView9</item>
+        <item>@+id/imageView10</item>
+        <item>@+id/imageView11</item>
+        <item>@+id/imageView12</item>
+        <item>@+id/imageView13</item>
+        <item>@+id/imageView14</item>
+        <item>@+id/imageView15</item>
+        <item>@+id/imageView16</item>
+        <item>@+id/imageView17</item>
+        <item>@+id/imageView18</item>
+        <item>@+id/imageView19</item>
+        <item>@+id/imageView20</item>
     </array>
 </resources>

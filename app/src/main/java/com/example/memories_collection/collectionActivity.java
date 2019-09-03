@@ -26,7 +26,6 @@ import android.widget.ImageView;
 
 public class collectionActivity extends AppCompatActivity {
     private String fileName = "test.xlm";
-    int imageViewld[] = {R.id.imageView1, R.id.imageView2, R.id.imageView3, R.id.imageView4};
 
 
     @Override
@@ -60,6 +59,7 @@ public class collectionActivity extends AppCompatActivity {
                 dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
                 // ダイアログを表示する
                 dialog.show();
+
             }
         });
 
@@ -70,6 +70,7 @@ public class collectionActivity extends AppCompatActivity {
             public void onClick(View v){
                 String str = readFile(fileName);
                 if (str != null) {
+
                     ((ImageView) findViewById(R.id.imageView1)).setImageResource(R.drawable.f2132);
                 }else{
                     image.setBackgroundColor(00000000);
