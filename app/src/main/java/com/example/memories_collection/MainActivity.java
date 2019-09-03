@@ -20,7 +20,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.CameraUpdate;
-
+import com.google.android.gms.maps.model.Marker;
 import android.content.pm.PackageManager;
 import android.util.Log;
 import android.content.Intent;
@@ -33,6 +33,8 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     LocationManager locationManager;
     double late, lon;
+    Marker marker;
+    int mark = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,7 +140,11 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
         lon = location.getLongitude();
         LatLng ecc = new LatLng(late, lon);
-        mMap.addMarker(new MarkerOptions().position(ecc).title("Marker"));
+        if (mark > 0) {
+            marker.setVisible(false);
+        }
+        marker = mMap.addMarker(new MarkerOptions().position(ecc).title("Marker"));
+        marker.setVisible(true);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ecc));
         CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom(
@@ -153,7 +159,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             switch (view.getId()) {
                 case R.id.imageButton:
                     //動作確認用、そのうち消す(マーカーを和歌山湾辺りに一つ増やすコード)
-                    mMap.addMarker(new MarkerOptions().position(new LatLng(34, 135)).title("Markerrrrrrrrrrrrrrrr"));
+                    marker = mMap.addMarker(new MarkerOptions().position(new LatLng(34, 135)).title("Markerrrrrrrrrrrrrrrr"));
                     //  設定画面を開く処理
                     //ナビゲーションドロワー
 
@@ -180,11 +186,13 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         Location location = new Location(LocationManager.GPS_PROVIDER);
+
+
         onLocationChanged(location);
         // Add a marker in ecc and move the camera
         LatLng ecc = new LatLng(late, lon);
-        mMap.addMarker(new MarkerOptions().position(ecc).title("Marker"));
-
+        marker = mMap.addMarker(new MarkerOptions().position(ecc).title("Marker"));
+        mark++;
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ecc));
         CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom(
                 new LatLng(late, lon), 12);
