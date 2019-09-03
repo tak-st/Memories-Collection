@@ -7,13 +7,15 @@
     tools:context=".collectionActivity">
 
     <LinearLayout
-        android:layout_width="398dp"
-        android:layout_height="721dp"
+        android:layout_width="408dp"
+        android:layout_height="730dp"
+        android:background="?android:attr/colorButtonNormal"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="lollipop">
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -23,8 +25,9 @@
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="261dp"
+                android:layout_width="298dp"
                 android:layout_height="match_parent"
+                android:background="@android:color/background_light"
                 android:text="@string/コレクション"
                 android:textSize="36sp" />
 
@@ -33,8 +36,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                app:srcCompat="@android:drawable/ic_popup_sync"
-                android:contentDescription="@string/todo" />
+                android:contentDescription="@string/todo"
+                app:srcCompat="@android:drawable/ic_popup_sync" />
 
         </LinearLayout>
 
@@ -43,37 +46,34 @@
             android:layout_height="125dp"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/imageButton1"
+            <ImageView
+                android:id="@+id/imageView1"
                 android:layout_width="25dp"
-                android:layout_height="120dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                android:scaleType="fitXY"
                 app:srcCompat="@drawable/f2132" />
 
-            <ImageButton
-                android:id="@+id/imageButton2"
+            <ImageView
+                android:id="@+id/imageView2"
                 android:layout_width="25dp"
-                android:layout_height="120dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                android:scaleType="fitXY"
                 app:srcCompat="@drawable/frame2" />
 
-            <ImageButton
-                android:id="@+id/imageButton3"
+            <ImageView
+                android:id="@+id/imageView3"
                 android:layout_width="25dp"
-                android:layout_height="120dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                android:scaleType="fitXY"
                 app:srcCompat="@drawable/frame1" />
 
-            <ImageButton
-                android:id="@+id/imageButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="120dp"
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
                 app:srcCompat="@android:color/transparent" />
@@ -85,40 +85,38 @@
             android:layout_height="131dp"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/imageButton5"
-                android:layout_width="25dp"
-                android:layout_height="120dp"
-                android:layout_weight="1"
-                android:contentDescription="@string/todo"
-                android:scaleType="center"
-                app:srcCompat="@drawable/img01" />
-
-            <ImageButton
-                android:id="@+id/imageButton6"
-                android:layout_width="25dp"
-                android:layout_height="120dp"
-                android:layout_weight="1"
-                android:contentDescription="@string/todo"
-                android:scaleType="center"
-                app:srcCompat="@drawable/img02" />
-
-            <ImageButton
-                android:id="@+id/imageButton7"
-                android:layout_width="25dp"
-                android:layout_height="120dp"
-                android:layout_weight="1"
-                android:contentDescription="@string/todo"
-                android:scaleType="center"
-                app:srcCompat="@drawable/img04" />
-
-            <ImageButton
-                android:id="@+id/imageButton8"
+            <ImageView
+                android:id="@+id/imageView5"
                 android:layout_width="wrap_content"
-                android:layout_height="120dp"
+                android:layout_height="131dp"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
                 app:srcCompat="@android:color/transparent" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="@string/todo"
+                app:srcCompat="@android:color/transparent" />
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="@string/todo"
+                app:srcCompat="@android:color/transparent" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="@string/todo"
+                app:srcCompat="@android:color/transparent" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -126,37 +124,37 @@
             android:layout_height="130dp"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/imageButton9"
-                android:layout_width="25dp"
-                android:layout_height="120dp"
-                android:layout_weight="1"
-                android:contentDescription="@string/todo"
-                app:srcCompat="@drawable/img08" />
-
-            <ImageButton
-                android:id="@+id/imageButton10"
-                android:layout_width="25dp"
-                android:layout_height="120dp"
-                android:layout_weight="1"
-                android:contentDescription="@string/todo"
-                app:srcCompat="@drawable/img09" />
-
-            <ImageButton
-                android:id="@+id/imageButton11"
+            <ImageView
+                android:id="@+id/imageView9"
                 android:layout_width="wrap_content"
-                android:layout_height="120dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
                 app:srcCompat="@android:color/transparent" />
 
-            <ImageButton
-                android:id="@+id/imageButton12"
-                android:layout_width="25dp"
-                android:layout_height="120dp"
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                app:srcCompat="@drawable/img12" />
+                app:srcCompat="@android:color/transparent" />
+
+            <ImageView
+                android:id="@+id/imageView11"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="@string/todo"
+                app:srcCompat="@android:color/transparent" />
+
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="@string/todo"
+                app:srcCompat="@android:color/transparent" />
         </LinearLayout>
 
         <LinearLayout
@@ -164,34 +162,34 @@
             android:layout_height="131dp"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/imageButton13"
-                android:layout_width="25dp"
-                android:layout_height="120dp"
+            <ImageView
+                android:id="@+id/imageView13"
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                app:srcCompat="@drawable/img11" />
+                app:srcCompat="@drawable/img01" />
 
-            <ImageButton
-                android:id="@+id/imageButton14"
-                android:layout_width="wrap_content"
-                android:layout_height="120dp"
+            <ImageView
+                android:id="@+id/imageView14"
+                android:layout_width="4dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                app:srcCompat="@android:color/transparent" />
+                app:srcCompat="@drawable/img07" />
 
-            <ImageButton
-                android:id="@+id/imageButton15"
-                android:layout_width="wrap_content"
-                android:layout_height="120dp"
+            <ImageView
+                android:id="@+id/imageView15"
+                android:layout_width="2dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                app:srcCompat="@android:color/transparent" />
+                app:srcCompat="@drawable/img10" />
 
-            <ImageButton
-                android:id="@+id/imageButton16"
+            <ImageView
+                android:id="@+id/imageView16"
                 android:layout_width="wrap_content"
-                android:layout_height="120dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
                 app:srcCompat="@android:color/transparent" />
@@ -202,34 +200,34 @@
             android:layout_height="128dp"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/imageButton17"
+            <ImageView
+                android:id="@+id/imageView17"
                 android:layout_width="wrap_content"
-                android:layout_height="120dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
                 app:srcCompat="@android:color/transparent" />
 
-            <ImageButton
-                android:id="@+id/imageButton18"
+            <ImageView
+                android:id="@+id/imageView18"
                 android:layout_width="wrap_content"
-                android:layout_height="120dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
                 app:srcCompat="@android:color/transparent" />
 
-            <ImageButton
-                android:id="@+id/imageButton19"
+            <ImageView
+                android:id="@+id/imageView19"
                 android:layout_width="wrap_content"
-                android:layout_height="120dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
                 app:srcCompat="@android:color/transparent" />
 
-            <ImageButton
-                android:id="@+id/imageButton20"
+            <ImageView
+                android:id="@+id/imageView20"
                 android:layout_width="wrap_content"
-                android:layout_height="120dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
                 app:srcCompat="@android:color/transparent" />
