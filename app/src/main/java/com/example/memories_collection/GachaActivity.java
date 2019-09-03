@@ -21,28 +21,16 @@ public class GachaActivity extends AppCompatActivity {
 
     private int coin = 1000;
     private int power = 1;
-    private double newitem = 0.0;
+    private double newitem = 1;
+    private double powernewitem = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gacha);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        SharedPreferences sharedPref = getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
-
-        // 値の取得
-        int intVal = sharedPref.getInt("UNLOCK_ITEM", 0);
-        if (intVal < 6) {
-            newitem = 2 / (intVal + 2);
-        } else {
-            newitem = 2 / (Math.pow((intVal - 5), 2) + 7);
-        }
-        TextView probt = findViewById(R.id.textView2);
-        probt.setText(String.format("%.1f%%", newitem * 100));
-        // 値の設定 (起動する毎に値が +1 されます)
-/*        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt("MY_KEY", intVal + 1);
-        editor.apply();*/
+        Refreshnewitemprob();
+        Refreshpowerprob();
         TextView tv = findViewById(R.id.textView);
         tv.setText(String.valueOf(coin));
         findViewById(R.id.imageView).setOnClickListener(new View.OnClickListener() {
@@ -58,6 +46,7 @@ public class GachaActivity extends AppCompatActivity {
 
                 } else {
                     power += 1;
+                    Refreshpowerprob();
                     TextView tv = findViewById(R.id.textView3);
                     tv.setText(String.valueOf(power));
                 }
@@ -72,6 +61,7 @@ public class GachaActivity extends AppCompatActivity {
 
                 } else {
                     power -= 1;
+                    Refreshpowerprob();
                     TextView tv = findViewById(R.id.textView3);
                     tv.setText(String.valueOf(power));
                 }
@@ -79,6 +69,27 @@ public class GachaActivity extends AppCompatActivity {
         });
     }
 
+    private void Refreshpowerprob() {
+        TextView probt = findViewById(R.id.textView2);
+        powernewitem = 1 - Math.pow((1 - newitem), (power - 1) * 1.05 + 1);
+        probt.setText(String.format("%.1f%%", powernewitem * 100));
+    }
+
+    private void Refreshnewitemprob() {
+        SharedPreferences sharedPref = getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
+
+        // 値の取得
+        int intVal = sharedPref.getInt("UNLOCK_ITEM", 0);
+        if (intVal < 6) {
+            newitem = 1.5 / (intVal + 1.5);
+        } else {
+            if (intVal < 20) {
+                newitem = 1.5 / (Math.pow((intVal - 5), 2) + 6.5);
+            } else {
+                newitem = 0;
+            }
+        }
+    }
     private void gachaClickEvent(View v) {
         Random random = new Random();
         int randomValue = random.nextInt(1000);
@@ -95,12 +106,18 @@ public class GachaActivity extends AppCompatActivity {
             coin -= power;
             TextView tv = findViewById(R.id.textView);
             tv.setText(String.valueOf(coin));
-            if (randomValue < 90 - (power * 0.9)) {
-                builder.setMessage("N");
-            } else if (randomValue < 99 - (power * 0.3)) {
-                builder.setMessage("R");
+            Refreshpowerprob();
+            if (randomValue < powernewitem * 1000) {
+                builder.setMessage("新アイテム獲得！");
+                SharedPreferences sharedPref = getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
+                int intVal = sharedPref.getInt("UNLOCK_ITEM", 0);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putInt("UNLOCK_ITEM", intVal + 1);
+                editor.apply();
+                Refreshnewitemprob();
+                Refreshpowerprob();
             } else {
-                builder.setMessage("SR");
+                builder.setMessage("はずれ");
             }
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
@@ -114,25 +131,9 @@ public class GachaActivity extends AppCompatActivity {
                 }
                 TextView tv3 = findViewById(R.id.textView3);
                 tv3.setText(String.valueOf(power));
+                Refreshpowerprob();
             }
             builder.show();
         }
     }
-
-/*    private void gachaLongClickEvent(View v) {
-        if (power == 98) {
-
-        } else {
-            if (coin <= 0) {
-
-            } else {
-                coin -= 1;
-                power += 1;
-                TextView tv = findViewById(R.id.textView);
-                tv.setText(String.valueOf(coin));
-
-            }
-        }
-
-    }*/
 }
