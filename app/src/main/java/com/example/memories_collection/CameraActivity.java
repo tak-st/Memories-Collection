@@ -110,16 +110,22 @@ public class CameraActivity extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
                 PackageManager.PERMISSION_GRANTED) {
-            cameraIntent();
+            if (ActivityCompat.checkSelfPermission(this,
+                    Manifest.permission.CAMERA) ==
+                    PackageManager.PERMISSION_GRANTED) {
+                cameraIntent();
+            } else {
+                requestPermissionC();
+            }
         }
         // 拒否していた場合
         else {
-            requestPermission();
+            requestPermissionS();
         }
     }
 
     // 許可を求める
-    private void requestPermission() {
+    private void requestPermissionS() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             ActivityCompat.requestPermissions(CameraActivity.this,
@@ -139,6 +145,25 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
+    private void requestPermissionC() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                Manifest.permission.CAMERA)) {
+            ActivityCompat.requestPermissions(CameraActivity.this,
+                    new String[]{Manifest.permission.CAMERA},
+                    REQUEST_PERMISSION);
+
+        } else {
+            Toast toast = Toast.makeText(this,
+                    "許可されないとアプリが実行できません",
+                    Toast.LENGTH_SHORT);
+            toast.show();
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA,},
+                    REQUEST_PERMISSION);
+
+        }
+    }
     // 結果の受け取り
     @Override
     public void onRequestPermissionsResult(int requestCode,
@@ -150,7 +175,7 @@ public class CameraActivity extends AppCompatActivity {
         if (requestCode == REQUEST_PERMISSION) {
             // 使用が許可された
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                cameraIntent();
+                checkPermission();
 
             } else {
                 // それでも拒否された時の対応
