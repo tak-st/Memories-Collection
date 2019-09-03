@@ -1,18 +1,9 @@
 package com.example.memories_collection;
 
-import android.os.Bundle;
-
-
-//AndroidX
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
-//import android.support.v4.app.ActivityCompat;
-//import android.support.v4.content.FileProvider;
-//import android.support.v7.app.AppCompatActivity;
-//import android.support.annotation.NonNull;
-
 import android.Manifest;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -28,13 +19,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
-
 
 public class CameraActivity extends AppCompatActivity {
 
@@ -53,7 +41,7 @@ public class CameraActivity extends AppCompatActivity {
 
         imageView = findViewById(R.id.image_view);
 
-        Button cameraButton = findViewById(R.id.cameraButton);
+        Button cameraButton = findViewById(R.id.camera_button);
         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
