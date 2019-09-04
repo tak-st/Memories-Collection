@@ -15,7 +15,7 @@ import java.util.Random;
 
 public class GachaActivity extends AppCompatActivity {
 
-    private static final String PREF_FILE_NAME = "com.example.memories_collection.PREF_FILE_NAME";
+    private static final String PREF_FILE_NAME = "DataSave";
     SharedPreferences sharedPref = getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
     SharedPreferences.Editor editor = sharedPref.edit();
     private int coin = sharedPref.getInt("COIN", 0);
@@ -164,6 +164,14 @@ public class GachaActivity extends AppCompatActivity {
                 if (intVal > 19) {
                     builder.setMessage("コイン獲得歩数減少獲得！ (-" + (intVal - 19) + ")");
                 } else {
+                    SharedPreferences Csp = getSharedPreferences("Collection", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor Ced = Csp.edit();
+                    int rndv = random.nextInt(20);
+                    while (Csp.getInt("Item_" + rndv, 4) == 0) {
+                        rndv = random.nextInt(20);
+                    }
+                    editor.putInt("Item_" + rndv, 0);
+                    editor.apply();
                     builder.setMessage("新アイテム獲得！ (" + (intVal + 1) + "/20)");
                 }
                 if (intVal == 19) {
