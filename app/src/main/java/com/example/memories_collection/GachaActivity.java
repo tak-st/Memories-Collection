@@ -56,6 +56,26 @@ public class GachaActivity extends AppCompatActivity {
 
             }
         });
+        findViewById(R.id.imageView4).setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                //上を長押しした場合、コイン投入数を所持コインと同額にする
+                power = coin;
+                if (power == 0) {
+                    //ただし0になる場合、1に設定。
+                    power = 1;
+                }
+                if (power > 99) {
+                    //ただし99を超える場合、99に設定。
+                    power = 99;
+                }
+                TextView tv3 = findViewById(R.id.textView3);
+                tv3.setText(String.valueOf(power));
+                //確率更新
+                Refreshpowerprob();
+                return true;
+            }
+        });
         findViewById(R.id.imageView5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +87,18 @@ public class GachaActivity extends AppCompatActivity {
                     TextView tv = findViewById(R.id.textView3);
                     tv.setText(String.valueOf(power));
                 }
+            }
+        });
+        findViewById(R.id.imageView5).setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                //下を長押しした場合、コイン投入数を1にする
+                power = 1;
+                TextView tv3 = findViewById(R.id.textView3);
+                tv3.setText(String.valueOf(power));
+                //確率更新
+                Refreshpowerprob();
+                return true;
             }
         });
     }
