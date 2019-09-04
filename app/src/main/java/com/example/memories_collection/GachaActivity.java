@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -16,10 +15,10 @@ import java.util.Random;
 
 public class GachaActivity extends AppCompatActivity {
 
-    private static final String TAG = "GachaActivity";
     private static final String PREF_FILE_NAME = "com.example.memories_collection.PREF_FILE_NAME";
-
-    private int coin = 1000;
+    SharedPreferences sharedPref = getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
+    SharedPreferences.Editor editor = sharedPref.edit();
+    private int coin = sharedPref.getInt("COIN", 0);
     private int power = 1;
     private double newitem = 1;
     private double powernewitem = 1;
@@ -56,6 +55,26 @@ public class GachaActivity extends AppCompatActivity {
 
             }
         });
+        findViewById(R.id.imageView4).setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                //上を長押しした場合、コイン投入数を所持コインと同額にする
+                power = coin;
+                if (power == 0) {
+                    //ただし0になる場合、1に設定。
+                    power = 1;
+                }
+                if (power > 99) {
+                    //ただし99を超える場合、99に設定。
+                    power = 99;
+                }
+                TextView tv3 = findViewById(R.id.textView3);
+                tv3.setText(String.valueOf(power));
+                //確率更新
+                Refreshpowerprob();
+                return true;
+            }
+        });
         findViewById(R.id.imageView5).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +88,18 @@ public class GachaActivity extends AppCompatActivity {
                 }
             }
         });
+        findViewById(R.id.imageView5).setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                //下を長押しした場合、コイン投入数を1にする
+                power = 1;
+                TextView tv3 = findViewById(R.id.textView3);
+                tv3.setText(String.valueOf(power));
+                //確率更新
+                Refreshpowerprob();
+                return true;
+            }
+        });
     }
 
     private void Refreshpowerprob() {
@@ -80,7 +111,6 @@ public class GachaActivity extends AppCompatActivity {
 
     private void Refreshnewitemprob() {
         //新アイテム獲得確率の更新
-        SharedPreferences sharedPref = getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
 
         // 設定に保存している値の取得
         int intVal = sharedPref.getInt("UNLOCK_ITEM", 0);
@@ -88,12 +118,16 @@ public class GachaActivity extends AppCompatActivity {
             // 新アイテムが5種類以下
             newitem = 1.5 / (intVal + 1.5);
         } else {
-            if (intVal < 20) {
-                // 新アイテムが6~19
+            if (intVal < 37) {
+                // 新アイテムが6~36
                 newitem = 1.5 / (Math.pow((intVal - 5), 2) + 6.5);
             } else {
-                //コンプリート！
-                newitem = 0;
+                //37~
+                if (intVal == 70) {
+                    newitem = 0;
+                } else {
+                    newitem = 0.001;
+                }
             }
         }
     }
@@ -116,18 +150,25 @@ public class GachaActivity extends AppCompatActivity {
             coin -= power;
             TextView tv = findViewById(R.id.textView);
             tv.setText(String.valueOf(coin));
+            editor.putInt("COIN", coin);
+            editor.apply();
             Refreshpowerprob();
             //確率で分岐する
             if (randomValue < powernewitem * 1000) {
                 //当たり
-                SharedPreferences sharedPref = getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
                 // 設定に保存している値の取得
                 int intVal = sharedPref.getInt("UNLOCK_ITEM", 0);
-                SharedPreferences.Editor editor = sharedPref.edit();
                 //所持アイテム数を1増加。
                 editor.putInt("UNLOCK_ITEM", intVal + 1);
                 editor.apply();
-                builder.setMessage("新アイテム獲得！ (" + (intVal + 1) + "/20)");
+                if (intVal > 19) {
+                    builder.setMessage("コイン獲得歩数減少獲得！ (-" + (intVal - 19) + ")");
+                } else {
+                    builder.setMessage("新アイテム獲得！ (" + (intVal + 1) + "/20)");
+                }
+                if (intVal == 19) {
+                    builder.setMessage("新アイテム獲得！ コンプリートおめでとう！");
+                }
                 //確率更新
                 Refreshnewitemprob();
                 Refreshpowerprob();
@@ -137,9 +178,9 @@ public class GachaActivity extends AppCompatActivity {
             }
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-
                 }
             });
+
             if (coin < power) {
                 //現在のコイン投入数より所持コインが少ない場合、コイン投入数を所持コインと同額にする
                 power = coin;
