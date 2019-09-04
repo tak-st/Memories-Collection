@@ -16,8 +16,9 @@ import java.util.Random;
 public class GachaActivity extends AppCompatActivity {
 
     private static final String PREF_FILE_NAME = "com.example.memories_collection.PREF_FILE_NAME";
-
-    private int coin = 5000;
+    SharedPreferences sharedPref = getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
+    SharedPreferences.Editor editor = sharedPref.edit();
+    private int coin = sharedPref.getInt("COIN", 0);
     private int power = 1;
     private double newitem = 1;
     private double powernewitem = 1;
@@ -110,7 +111,6 @@ public class GachaActivity extends AppCompatActivity {
 
     private void Refreshnewitemprob() {
         //新アイテム獲得確率の更新
-        SharedPreferences sharedPref = getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
 
         // 設定に保存している値の取得
         int intVal = sharedPref.getInt("UNLOCK_ITEM", 0);
@@ -150,14 +150,14 @@ public class GachaActivity extends AppCompatActivity {
             coin -= power;
             TextView tv = findViewById(R.id.textView);
             tv.setText(String.valueOf(coin));
+            editor.putInt("COIN", coin);
+            editor.apply();
             Refreshpowerprob();
             //確率で分岐する
             if (randomValue < powernewitem * 1000) {
                 //当たり
-                SharedPreferences sharedPref = getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
                 // 設定に保存している値の取得
                 int intVal = sharedPref.getInt("UNLOCK_ITEM", 0);
-                SharedPreferences.Editor editor = sharedPref.edit();
                 //所持アイテム数を1増加。
                 editor.putInt("UNLOCK_ITEM", intVal + 1);
                 editor.apply();
