@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -16,7 +15,6 @@ import java.util.Random;
 
 public class GachaActivity extends AppCompatActivity {
 
-    private static final String TAG = "GachaActivity";
     private static final String PREF_FILE_NAME = "com.example.memories_collection.PREF_FILE_NAME";
 
     private int coin = 5000;
