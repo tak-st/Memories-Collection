@@ -50,6 +50,10 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     int mark = 0;
     int coin = 0;
     int Step = 0;
+    //総合歩数からコイン獲得に使用済みの歩数をマイナスした数値
+    int Step2 = 0;
+    //コイン獲得回数
+    int StepClear = 0;
     int needWalk = 100;
     //位置情報保存の間隔
     int info = 0;
@@ -80,6 +84,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                     1000, 50, this);
 
         }
+        MoveStep();
         //総合歩数
         TextView text22 = (TextView) findViewById((R.id.textView2_1));
         text22.setText(String.valueOf(Step));
@@ -101,7 +106,27 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         sensorManager.registerListener(new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent event) {
+
                 Step = (int) event.values[0];
+                //総合歩数
+
+                Step2 = Step - (needWalk * StepClear);
+                if (Step2 >= needWalk) {
+                    StepClear++;
+                    coin++;
+                }
+                TextView text22 = (TextView) findViewById((R.id.textView2_1));
+                text22.setText(String.valueOf(Step));
+                //コイン枚数
+                TextView text5 = (TextView) findViewById((R.id.textView5));
+                text5.setText(String.valueOf(coin));
+                //総合歩数からコイン獲得に使用済みの歩数をマイナスした数値
+                //100歩につき1コイン
+                TextView text9 = (TextView) findViewById((R.id.textView9));
+                text9.setText(String.valueOf(Step2));
+                //コイン獲得に必要な歩数
+                TextView text11 = (TextView) findViewById((R.id.textView11));
+                text11.setText(String.valueOf(needWalk));
             }
 
             @Override
