@@ -24,8 +24,29 @@ public class collectionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection);
+
         SharedPreferences data = getSharedPreferences("Collection", Context.MODE_PRIVATE);
+
         findViewById(R.id.imageView1).setVisibility(data.getInt("Item_1", 4));
+        findViewById(R.id.imageView2).setVisibility(data.getInt("Item_2", 4));
+        findViewById(R.id.imageView3).setVisibility(data.getInt("Item_3", 4));
+        findViewById(R.id.imageView4).setVisibility(data.getInt("Item_4", 4));
+        findViewById(R.id.imageView5).setVisibility(data.getInt("Item_5", 4));
+        findViewById(R.id.imageView6).setVisibility(data.getInt("Item_6", 4));
+        findViewById(R.id.imageView7).setVisibility(data.getInt("Item_7", 4));
+        findViewById(R.id.imageView8).setVisibility(data.getInt("Item_8", 4));
+        findViewById(R.id.imageView9).setVisibility(data.getInt("Item_9", 4));
+        findViewById(R.id.imageView10).setVisibility(data.getInt("Item_10", 4));
+        findViewById(R.id.imageView11).setVisibility(data.getInt("Item_11", 4));
+        findViewById(R.id.imageView12).setVisibility(data.getInt("Item_12", 4));
+        findViewById(R.id.imageView13).setVisibility(data.getInt("Item_13", 4));
+        findViewById(R.id.imageView14).setVisibility(data.getInt("Item_14", 4));
+        findViewById(R.id.imageView15).setVisibility(data.getInt("Item_15", 4));
+        findViewById(R.id.imageView16).setVisibility(data.getInt("Item_16", 4));
+        findViewById(R.id.imageView17).setVisibility(data.getInt("Item_17", 4));
+        findViewById(R.id.imageView18).setVisibility(data.getInt("Item_18", 4));
+        findViewById(R.id.imageView19).setVisibility(data.getInt("Item_19", 4));
+        findViewById(R.id.imageView20).setVisibility(data.getInt("Item_20", 4));
 
         // レイアウトオブジェクトから拡大対象のImageViewを取得
         final ImageView tapView1 = (ImageView) findViewById(R.id.imageView1);
