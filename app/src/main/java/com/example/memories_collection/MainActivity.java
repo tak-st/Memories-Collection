@@ -7,11 +7,16 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.annotation.NonNull;
 
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.location.*;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ProgressBar;
+import android.content.*;
 
+import java.io.*;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -25,16 +30,31 @@ import android.content.pm.PackageManager;
 import android.util.Log;
 import android.content.Intent;
 import android.provider.Settings;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.Manifest;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener, LocationListener {
 
     private GoogleMap mMap;
     LocationManager locationManager;
+    //late...緯度,lon...経度
     double late, lon;
     Marker marker;
     int mark = 0;
+    int coin = 0;
+    int Step = 0;
+    int needWalk = 100;
+    //位置情報保存の間隔
+    int info = 0;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +65,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        //int percent = 0;
-        ProgressBar bar = (ProgressBar) findViewById(R.id.progressBar);
-        //bar.setMax(100);
-        //bar.setProgress(percent,true);
-        //bar.setMin(0);
+
         findViewById(R.id.imageButton).setOnClickListener(this);
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION) !=
@@ -64,8 +80,35 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                     1000, 50, this);
 
         }
+        //総合歩数
+        TextView text22 = (TextView) findViewById((R.id.textView2_1));
+        text22.setText(String.valueOf(Step));
+        //コイン枚数
+        TextView text5 = (TextView) findViewById((R.id.textView5));
+        text5.setText(String.valueOf(coin));
+        //総合歩数からコイン獲得に使用済みの歩数をマイナスした数値＝コイン獲得回数を変数にすべき？
+        //100歩につき1コイン
+        TextView text9 = (TextView) findViewById((R.id.textView9));
+        text9.setText(String.valueOf(Step));
+        //コイン獲得に必要な歩数
+        TextView text11 = (TextView) findViewById((R.id.textView11));
+        text11.setText(String.valueOf(needWalk));
     }
 
+    public void MoveStep() {
+        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        sensorManager.registerListener(new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                Step = (int) event.values[0];
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+            }
+        }, sensor, SensorManager.SENSOR_DELAY_UI);
+    }
     private void locationStart() {
 
         // LocationManager インスタンス生成
@@ -136,22 +179,39 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onLocationChanged(Location location) {
-        late = location.getLatitude();
+        String path = "/data/data/" + this.getPackageName() + "/files/Location.txt";
+        try {
+            FileWriter fw = new FileWriter(path);
+            BufferedWriter bw = new BufferedWriter(fw);
+            String s = "";
+            late = location.getLatitude();
+            lon = location.getLongitude();
+            if (info % 10 == 0) {
+                long time = location.getTime();
+                Date date = new Date(time);
+                DateFormat format = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss");
+                s += format.format(date) + "," + late + "," + lon;
+                bw.write(s);
+                bw.newLine();
+            }
+            LatLng ecc = new LatLng(late, lon);
+            if (mark > 0) {
+                marker.setVisible(false);
+            }
+            marker = mMap.addMarker(new MarkerOptions().position(ecc).title("Marker"));
+            marker.setVisible(true);
 
-        lon = location.getLongitude();
-        LatLng ecc = new LatLng(late, lon);
-        if (mark > 0) {
-            marker.setVisible(false);
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(ecc));
+            CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom(
+                    new LatLng(late, lon), 12);
+
+            mMap.moveCamera(cUpdate);
+            info++;
+        } catch (IOException e) {
+            Toast toast = Toast.makeText(this,
+                    "無理", Toast.LENGTH_SHORT);
+            toast.show();
         }
-        marker = mMap.addMarker(new MarkerOptions().position(ecc).title("Marker"));
-        marker.setVisible(true);
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(ecc));
-        CameraUpdate cUpdate = CameraUpdateFactory.newLatLngZoom(
-                new LatLng(late, lon), 12);
-
-        mMap.moveCamera(cUpdate);
-
     }
     @Override
     public void onClick(View view) {
@@ -162,14 +222,12 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                     marker = mMap.addMarker(new MarkerOptions().position(new LatLng(34, 135)).title("Markerrrrrrrrrrrrrrrr"));
                     //  設定画面を開く処理
                     //ナビゲーションドロワー
+                    //ガチャ画面、履歴画面、撮影、コレクション、展示モード(歩数を500歩くらいに、コイン5000枚に、位置情報を10個ほど勝手に数字でファイルに書き込む)
 
                     break;
-
-                //多分戻るボタンとかもいる？
             }
         }
     }
-
 
 
     /**
