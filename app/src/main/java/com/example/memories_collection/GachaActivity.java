@@ -19,7 +19,7 @@ public class GachaActivity extends AppCompatActivity {
     private static final String TAG = "GachaActivity";
     private static final String PREF_FILE_NAME = "com.example.memories_collection.PREF_FILE_NAME";
 
-    private int coin = 1000;
+    private int coin = 5000;
     private int power = 1;
     private double newitem = 1;
     private double powernewitem = 1;
@@ -88,12 +88,16 @@ public class GachaActivity extends AppCompatActivity {
             // 新アイテムが5種類以下
             newitem = 1.5 / (intVal + 1.5);
         } else {
-            if (intVal < 20) {
-                // 新アイテムが6~19
+            if (intVal < 37) {
+                // 新アイテムが6~36
                 newitem = 1.5 / (Math.pow((intVal - 5), 2) + 6.5);
             } else {
-                //コンプリート！
-                newitem = 0;
+                //37~
+                if (intVal == 70) {
+                    newitem = 0;
+                } else {
+                    newitem = 0.001;
+                }
             }
         }
     }
@@ -127,7 +131,14 @@ public class GachaActivity extends AppCompatActivity {
                 //所持アイテム数を1増加。
                 editor.putInt("UNLOCK_ITEM", intVal + 1);
                 editor.apply();
-                builder.setMessage("新アイテム獲得！ (" + (intVal + 1) + "/20)");
+                if (intVal > 19) {
+                    builder.setMessage("コイン獲得歩数減少獲得！ (-" + (intVal - 19) + ")");
+                } else {
+                    builder.setMessage("新アイテム獲得！ (" + (intVal + 1) + "/20)");
+                }
+                if (intVal == 19) {
+                    builder.setMessage("新アイテム獲得！ コンプリートおめでとう！");
+                }
                 //確率更新
                 Refreshnewitemprob();
                 Refreshpowerprob();
@@ -137,9 +148,9 @@ public class GachaActivity extends AppCompatActivity {
             }
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-
                 }
             });
+
             if (coin < power) {
                 //現在のコイン投入数より所持コインが少ない場合、コイン投入数を所持コインと同額にする
                 power = coin;
