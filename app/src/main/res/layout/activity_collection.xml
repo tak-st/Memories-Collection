@@ -37,7 +37,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="175dp"
+            android:layout_height="160dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -54,7 +54,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                app:srcCompat="@drawable/f2132" />
+                android:src="@drawable/frame2" />
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -70,13 +70,13 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                android:src="@drawable/img01" />
+                android:src="@drawable/frame4" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="175dp"
+            android:layout_height="160dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -85,7 +85,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                app:srcCompat="@drawable/common_full_open_on_phone" />
+                android:src="@drawable/frame3" />
 
             <ImageView
                 android:id="@+id/imageView6"
@@ -93,7 +93,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                app:srcCompat="@drawable/img02" />
+                android:src="@drawable/frame5" />
 
             <ImageView
                 android:id="@+id/imageView7"
@@ -101,7 +101,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                app:srcCompat="@drawable/img03" />
+                android:src="@drawable/frame6" />
 
             <ImageView
                 android:id="@+id/imageView8"
@@ -109,13 +109,13 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                app:srcCompat="@drawable/img04" />
+                android:src="@drawable/frame7" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="175dp"
+            android:layout_height="160dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -124,7 +124,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                app:srcCompat="@drawable/img05" />
+                android:src="@drawable/img01" />
 
             <ImageView
                 android:id="@+id/imageView10"
@@ -132,7 +132,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                app:srcCompat="@drawable/img06" />
+                android:src="@drawable/img02" />
 
             <ImageView
                 android:id="@+id/imageView11"
@@ -140,7 +140,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                app:srcCompat="@drawable/img07" />
+                android:src="@drawable/img03" />
 
             <ImageView
                 android:id="@+id/imageView12"
@@ -148,12 +148,12 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                app:srcCompat="@drawable/img08" />
+                android:src="@drawable/img04" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="175dp"
+            android:layout_height="160dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -162,7 +162,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                app:srcCompat="@drawable/img01" />
+                android:src="@drawable/img05" />
 
             <ImageView
                 android:id="@+id/imageView14"
@@ -170,7 +170,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                app:srcCompat="@drawable/img07" />
+                android:src="@drawable/img06" />
 
             <ImageView
                 android:id="@+id/imageView15"
@@ -178,7 +178,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                app:srcCompat="@drawable/img09" />
+                android:src="@drawable/img07" />
 
             <ImageView
                 android:id="@+id/imageView16"
@@ -186,12 +186,12 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                app:srcCompat="@drawable/img10" />
+                android:src="@drawable/img08" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="175dp"
+            android:layout_height="160dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -200,7 +200,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                app:srcCompat="@drawable/img11" />
+                android:src="@drawable/img09" />
 
             <ImageView
                 android:id="@+id/imageView18"
@@ -208,7 +208,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                app:srcCompat="@drawable/img12" />
+                android:src="@drawable/img10" />
 
             <ImageView
                 android:id="@+id/imageView19"
@@ -216,7 +216,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                app:srcCompat="@drawable/img01" />
+                android:src="@drawable/img11" />
 
             <ImageView
                 android:id="@+id/imageView20"
@@ -224,7 +224,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                app:srcCompat="@drawable/img02" />
+                android:src="@drawable/img12" />
         </LinearLayout>
     </LinearLayout>
 
