@@ -159,5 +159,7 @@ public class CameraActivity extends AppCompatActivity {
                 toast.show();
             }
         }
+
     }
+
 }
