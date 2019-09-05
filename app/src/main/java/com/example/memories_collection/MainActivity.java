@@ -1,43 +1,43 @@
 package com.example.memories_collection;
 
-import androidx.fragment.app.FragmentActivity;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.annotation.NonNull;
-
+import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.location.*;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
-import android.content.*;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import java.io.*;
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.model.Marker;
-import android.content.pm.PackageManager;
-import android.util.Log;
-import android.content.Intent;
-import android.provider.Settings;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.Manifest;
+import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-
 import java.util.Date;
 
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener, LocationListener {
@@ -67,7 +67,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history);
+        setContentView(R.layout.activity_main1);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -249,7 +249,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             if (info % 10 == 0) {
                 long time = location.getTime();
                 Date date = new Date(time);
-                DateFormat format = new SimpleDateFormat("YYYY/MM/dd HH:mm:ss");
+                DateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                 s += format.format(date) + "," + late + "," + lon;
                 bw.write(s);
                 bw.newLine();
