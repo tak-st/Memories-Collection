@@ -42,9 +42,7 @@ public class Camera2Activity<drawBitmap, bitmap1, bitmap2> extends AppCompatActi
 
 
         Bitmap bitmap1 = ((BitmapDrawable) imageView1.getDrawable()).getBitmap();
-        Bitmap bitmap2 = ((BitmapDrawable) imageView2.getDrawable()).getBitmap();
         offScreen.drawBitmap(bitmap1, imageView1.getImageMatrix(), null);
-        offScreen.drawBitmap(bitmap2, imageView2.getImageMatrix(), null);
         //Canvasに必要な数だけdrawBitmapするその時にImageViewの中のMatrixを使用するように注意
 
         //ファイルに出力する
