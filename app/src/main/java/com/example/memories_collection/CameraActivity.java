@@ -62,7 +62,7 @@ public class CameraActivity extends AppCompatActivity {
         String fileDate = new SimpleDateFormat(
                 "ddHHmmss", Locale.US).format(new Date());
         // ファイル名
-        String fileName = String.format("CameraIntent_%s.jpg", fileDate);
+        String fileName = String.format("CameraIntent_%s.png", fileDate);
 
         cameraFile = new File(cFolder, fileName);
 
