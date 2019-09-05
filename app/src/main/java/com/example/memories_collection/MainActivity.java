@@ -40,6 +40,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener, LocationListener {
 
     private GoogleMap mMap;
@@ -60,8 +61,11 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     //日付管理
     int dat;
     Date d1;
-    DateFormat form = new SimpleDateFormat("yyyy/MM/dd 00:00:00");
+    DateFormat form = new SimpleDateFormat("yyyy/MM/dd");
+    Date dd;
     SharedPreferences data1;
+    String path;
+
 
 
     @Override
@@ -74,6 +78,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
         data1 = getSharedPreferences("DataSave", Context.MODE_PRIVATE);
         int ItemInt = data1.getInt("UNLOCK_ITEM", 0);
+
         if (ItemInt > 20) {
             needWalk -= (ItemInt - 20);
         }
@@ -91,9 +96,9 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                     1000, 50, this);
 
         }
+        path = "/data/data/com.example.memories_collection/files/Location";
         coin = data1.getInt("COIN", 0);
         StepClear = data1.getInt("scl", 0);
-
         Step = data1.getInt("step", 0);
         Step2 = Step - (needWalk * StepClear);
         MoveStep();
@@ -110,6 +115,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         //コイン獲得に必要な歩数
         TextView text11 = (TextView) findViewById((R.id.textView11));
         text11.setText(String.valueOf(needWalk));
+
     }
 
     public void MoveStep() {
@@ -118,11 +124,14 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         sensorManager.registerListener(new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent event) {
+
                 //アプリ起動が初めてか
                 SharedPreferences.Editor editor = data1.edit();
                 dat = data1.getInt("datSave", 0);
                 if (dat == 0) {
+                    editor.putInt("ETEN", 0);
                     d1 = new Date();
+                    path = "/data/data/com.example.memories_collection/files/Location" + form.format(d1) + ".txt";
                     editor.putString("d1Save", form.format(d1));
                     editor.apply();
                     dat = 1;
@@ -133,14 +142,20 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                 //前回の起動から日が変わっているか
                 String d = data1.getString("d1Save", "");
                 if (d.equals(form.format(d2))) {
+                    dd = new Date();
+                    path = "/data/data/com.example.memories_collection/files/Location" + form.format(dd) + ".txt";
+                    System.out.println(path);
+                } else {
                     Step = 0;
+                    editor.putInt("step", Step);
                     StepClear = 0;
+                    editor.putInt("scl", StepClear);
                     d1 = d2;
+                    editor.putString("d1Save", form.format(d1));
                 }
 
                 Step++;
                 //総合歩数
-
                 editor.putInt("step", Step);
                 Step2 = Step - (needWalk * StepClear);
                 if (Step2 >= needWalk) {
@@ -239,18 +254,24 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onLocationChanged(Location location) {
-        String path = "/data/data/" + this.getPackageName() + "/files/Location.txt";
+        SharedPreferences.Editor editor = data1.edit();
+        editor.putString("PATH", path);
+        System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeee");
         try {
             FileWriter fw = new FileWriter(path);
             BufferedWriter bw = new BufferedWriter(fw);
             String s = "";
             late = location.getLatitude();
             lon = location.getLongitude();
-            if (info % 10 == 0) {
+
+            if (info % 1 == 0) {
                 long time = location.getTime();
                 Date date = new Date(time);
                 DateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-                s += format.format(date) + "," + late + "," + lon;
+                String sla = String.valueOf(late);
+                String slo = String.valueOf(lon);
+                s = format.format(date) + "," + sla + "," + slo;
+                System.out.println(s);
                 bw.write(s);
                 bw.newLine();
             }
@@ -278,13 +299,11 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         if (view != null) {
             switch (view.getId()) {
                 case R.id.imageButton:
-                    //動作確認用、そのうち消す(マーカーを和歌山湾辺りに一つ増やすコード)
-                    marker = mMap.addMarker(new MarkerOptions().position(new LatLng(34, 135)).title("Markerrrrrrrrrrrrrrrr"));
-                    //  設定画面を開く処理
-                    //ナビゲーションドロワー
-                    //ガチャ画面、履歴画面、撮影、コレクション、展示モード(歩数を500歩くらいに、コイン5000枚に、位置情報を10個ほど勝手に数字でファイルに書き込む)
-
+                    Intent intent = new Intent(MainActivity.this, NaviActivity.class);
+                    startActivity(intent);
                     break;
+
+
             }
         }
     }
