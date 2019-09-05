@@ -37,7 +37,7 @@ import android.Manifest;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+
 import java.util.Date;
 
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener, LocationListener {
@@ -48,16 +48,20 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     double late, lon;
     Marker marker;
     int mark = 0;
-    int coin = 0;
+    int coin;
     int Step = 0;
     //総合歩数からコイン獲得に使用済みの歩数をマイナスした数値
     int Step2 = 0;
     //コイン獲得回数
-    int StepClear = 0;
+    int StepClear;
     int needWalk = 100;
     //位置情報保存の間隔
     int info = 0;
-
+    //日付管理
+    int dat;
+    Date d1;
+    DateFormat form = new SimpleDateFormat("yyyy/MM/dd 00:00:00");
+    SharedPreferences data1;
 
 
     @Override
@@ -68,8 +72,11 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
-
+        data1 = getSharedPreferences("DataSave", Context.MODE_PRIVATE);
+        int ItemInt = data1.getInt("UNLOCK_ITEM", 0);
+        if (ItemInt > 20) {
+            needWalk -= (ItemInt - 20);
+        }
         findViewById(R.id.imageButton).setOnClickListener(this);
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION) !=
@@ -84,6 +91,8 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                     1000, 50, this);
 
         }
+        coin = data1.getInt("COIN", 0);
+        StepClear = data1.getInt("scl", 0);
         MoveStep();
         //総合歩数
         TextView text22 = (TextView) findViewById((R.id.textView2_1));
@@ -102,18 +111,40 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void MoveStep() {
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
         sensorManager.registerListener(new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent event) {
+                //アプリ起動が初めてか
+                SharedPreferences.Editor editor = data1.edit();
+                dat = data1.getInt("datSave", 0);
+                if (dat == 0) {
+                    d1 = new Date();
+                    editor.putString("d1Save", form.format(d1));
+                    editor.apply();
+                    dat = 1;
+                    editor.putInt("datSave", dat);
+                    editor.apply();
+                }
+                Date d2 = new Date();
+                //前回の起動から日が変わっているか
+                String d = data1.getString("d1Save", "");
+                if (d.equals(form.format(d2))) {
+                    Step = 0;
+                    StepClear = 0;
+                    d1 = d2;
+                }
 
-                Step = (int) event.values[0];
+                Step++;
                 //総合歩数
 
                 Step2 = Step - (needWalk * StepClear);
                 if (Step2 >= needWalk) {
                     StepClear++;
                     coin++;
+                    editor.putInt("COIN", coin);
+                    editor.putInt("scl", StepClear);
+                    editor.apply();
                 }
                 TextView text22 = (TextView) findViewById((R.id.textView2_1));
                 text22.setText(String.valueOf(Step));
