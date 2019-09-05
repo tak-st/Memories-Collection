@@ -1,6 +1,9 @@
 <resources>
-    <string name="app_name">Memories-Collection</string>
+    <string name="app_name">思い出コレクション</string>
     <string name="hallo_world">Hallo World</string>
+    <string name="ハードキャストされたテキスト">戻る</string>
+    <string name="コレクション">コレクション</string>
+    <string name="todo">TODO</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_main">Map</string>
 </resources>

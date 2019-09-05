@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="default_albumart">
+        <item>@+id/imageView1</item>
+        <item>@+id/imageView2</item>
+        <item>@+id/imageView3</item>
+        <item>@+id/imageView4</item>
+        <item>@+id/imageView5</item>
+        <item>@+id/imageView6</item>
+        <item>@+id/imageView7</item>
+        <item>@+id/imageView8</item>
+        <item>@+id/imageView9</item>
+        <item>@+id/imageView10</item>
+        <item>@+id/imageView11</item>
+        <item>@+id/imageView12</item>
+        <item>@+id/imageView13</item>
+        <item>@+id/imageView14</item>
+        <item>@+id/imageView15</item>
+        <item>@+id/imageView16</item>
+        <item>@+id/imageView17</item>
+        <item>@+id/imageView18</item>
+        <item>@+id/imageView19</item>
+        <item>@+id/imageView20</item>
+    </array>
+</resources>
