@@ -1,13 +1,11 @@
 package com.example.memories_collection;
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.FileProvider;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.annotation.NonNull;
 import android.Manifest;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -19,7 +17,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
+
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -32,7 +40,7 @@ public class CameraActivity extends AppCompatActivity {
     private ImageView imageView;
     private Uri cameraUri;
     private File cameraFile;
-
+    SharedPreferences sharedPref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,10 +67,10 @@ public class CameraActivity extends AppCompatActivity {
         // 保存先のフォルダー
         File cFolder = getExternalFilesDir(Environment.DIRECTORY_DCIM);
 
-        String fileDate = new SimpleDateFormat(
-                "ddHHmmss", Locale.US).format(new Date());
+        sharedPref = getSharedPreferences("DataSava", Context.MODE_PRIVATE);
+        int photon = sharedPref.getInt("PHOTONO", 1);
         // ファイル名
-        String fileName = String.format("CameraIntent_%s.png", fileDate);
+        String fileName = String.format("CameraIntent_%d.jpg", photon);
 
         cameraFile = new File(cFolder, fileName);
 
@@ -70,12 +78,32 @@ public class CameraActivity extends AppCompatActivity {
                 CameraActivity.this,
                 getApplicationContext().getPackageName() + ".fileprovider",
                 cameraFile);
+        String fileDate = new SimpleDateFormat(
+                "yymmdd", Locale.US).format(new Date());
+        String path = "/data/data/" + this.getPackageName() + "/files/Photos" + fileDate + ".txt";
+        try {
+            FileWriter fw = new FileWriter(path);
+            BufferedWriter bw = new BufferedWriter(fw);
+            Date date = new Date();
+            DateFormat format = new SimpleDateFormat("HH:mm:ss");
+            String PATH = sharedPref.getString("PATH", "");
+            String s = photon + "," + format.format(date) + "," + PATH;
+            try {
+                bw.write(s);
+                bw.newLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt("PHOTONO", photon + 1);
+        editor.apply();
 
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, cameraUri);
         startActivityForResult(intent, RESULT_CAMERA);
-
-        Log.d("debug", "startActivityForResult()");
     }
 
     @Override
@@ -110,16 +138,22 @@ public class CameraActivity extends AppCompatActivity {
         if (ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
                 PackageManager.PERMISSION_GRANTED) {
-            cameraIntent();
+            if (ActivityCompat.checkSelfPermission(this,
+                    Manifest.permission.CAMERA) ==
+                    PackageManager.PERMISSION_GRANTED) {
+                cameraIntent();
+            } else {
+                requestPermissionC();
+            }
         }
         // 拒否していた場合
         else {
-            requestPermission();
+            requestPermissionS();
         }
     }
 
     // 許可を求める
-    private void requestPermission() {
+    private void requestPermissionS() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             ActivityCompat.requestPermissions(CameraActivity.this,
@@ -139,6 +173,25 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
+    private void requestPermissionC() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                Manifest.permission.CAMERA)) {
+            ActivityCompat.requestPermissions(CameraActivity.this,
+                    new String[]{Manifest.permission.CAMERA},
+                    REQUEST_PERMISSION);
+
+        } else {
+            Toast toast = Toast.makeText(this,
+                    "許可されないとアプリが実行できません",
+                    Toast.LENGTH_SHORT);
+            toast.show();
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CAMERA,},
+                    REQUEST_PERMISSION);
+
+        }
+    }
     // 結果の受け取り
     @Override
     public void onRequestPermissionsResult(int requestCode,
@@ -150,7 +203,7 @@ public class CameraActivity extends AppCompatActivity {
         if (requestCode == REQUEST_PERMISSION) {
             // 使用が許可された
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                cameraIntent();
+                checkPermission();
 
             } else {
                 // それでも拒否された時の対応
@@ -159,7 +212,5 @@ public class CameraActivity extends AppCompatActivity {
                 toast.show();
             }
         }
-
     }
-
 }
