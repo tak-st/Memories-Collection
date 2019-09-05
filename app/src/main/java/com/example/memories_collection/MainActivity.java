@@ -93,6 +93,9 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         }
         coin = data1.getInt("COIN", 0);
         StepClear = data1.getInt("scl", 0);
+
+        Step = data1.getInt("step", 0);
+        Step2 = Step - (needWalk * StepClear);
         MoveStep();
         //総合歩数
         TextView text22 = (TextView) findViewById((R.id.textView2_1));
@@ -103,7 +106,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         //総合歩数からコイン獲得に使用済みの歩数をマイナスした数値＝コイン獲得回数を変数にすべき？
         //100歩につき1コイン
         TextView text9 = (TextView) findViewById((R.id.textView9));
-        text9.setText(String.valueOf(Step));
+        text9.setText(String.valueOf(Step2));
         //コイン獲得に必要な歩数
         TextView text11 = (TextView) findViewById((R.id.textView11));
         text11.setText(String.valueOf(needWalk));
@@ -138,14 +141,15 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                 Step++;
                 //総合歩数
 
+                editor.putInt("step", Step);
                 Step2 = Step - (needWalk * StepClear);
                 if (Step2 >= needWalk) {
                     StepClear++;
                     coin++;
                     editor.putInt("COIN", coin);
                     editor.putInt("scl", StepClear);
-                    editor.apply();
                 }
+                editor.apply();
                 TextView text22 = (TextView) findViewById((R.id.textView2_1));
                 text22.setText(String.valueOf(Step));
                 //コイン枚数
