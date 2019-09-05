@@ -37,7 +37,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="175dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -54,7 +54,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:contentDescription="@string/todo"
-                app:srcCompat="@drawable/frame3" />
+                app:srcCompat="@drawable/f2132" />
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -76,7 +76,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="175dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -115,7 +115,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="175dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -153,7 +153,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="175dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -191,7 +191,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="175dp"
             android:orientation="horizontal">
 
             <ImageView
