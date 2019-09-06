@@ -169,11 +169,13 @@ public class GachaActivity extends AppCompatActivity {
                     SharedPreferences Csp = getSharedPreferences("Collection", Context.MODE_PRIVATE);
                     SharedPreferences.Editor Ced = Csp.edit();
                     int rndv = random.nextInt(20);
-                    while (Csp.getInt("Item_" + rndv, 4) == 0) {
+                    while (Csp.getInt("Item_" + (rndv + 1), 4) == 0) {
                         rndv = random.nextInt(20);
+                        System.out.println("rndv ; " + (rndv + 1));
                     }
-                    editor.putInt("Item_" + rndv, 0);
-                    editor.apply();
+                    Ced.putInt("Item_" + (rndv + 1), 0);
+                    System.out.println("rndv : " + (rndv + 1));
+                    Ced.apply();
                     builder.setMessage("新アイテム獲得！ (" + (intVal + 1) + "/20)");
                 }
                 if (intVal == 19) {
