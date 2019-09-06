@@ -95,7 +95,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                     1000, 50, this);
 
         }
-
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa???????????????????");
         path = "/data/data/com.example.memories_collection/files/Location";
         coin = data1.getInt("COIN", 0);
         StepClear = data1.getInt("scl", 0);
@@ -310,6 +310,9 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         if (view != null) {
             switch (view.getId()) {
                 case R.id.imageButton:
+                    SharedPreferences.Editor editor = data1.edit();
+                    editor.putInt("COIN", coin);
+                    editor.apply();
                     Intent intent = new Intent(MainActivity.this, NaviActivity.class);
                     startActivity(intent);
                     break;
@@ -318,6 +321,34 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }
     }
+
+    @Override
+    public void onResume() {
+
+        super.onResume();
+        data1 = getSharedPreferences("DataSave", Context.MODE_PRIVATE);
+        int ItemInt = data1.getInt("UNLOCK_ITEM", 0);
+
+        if (ItemInt > 20) {
+            needWalk -= (ItemInt - 20);
+        }
+        coin = data1.getInt("COIN", 0);
+        Step2 = Step - (needWalk * StepClear);
+        //総合歩数
+        TextView text22 = (TextView) findViewById((R.id.textView2_1));
+        text22.setText(String.valueOf(Step));
+        //コイン枚数
+        TextView text5 = (TextView) findViewById((R.id.textView5));
+        text5.setText(String.valueOf(coin));
+        //総合歩数からコイン獲得に使用済みの歩数をマイナスした数値＝コイン獲得回数を変数にすべき？
+        //100歩につき1コイン
+        TextView text9 = (TextView) findViewById((R.id.textView9));
+        text9.setText(String.valueOf(Step2));
+        //コイン獲得に必要な歩数
+        TextView text11 = (TextView) findViewById((R.id.textView11));
+        text11.setText(String.valueOf(needWalk));
+    }
+
 
 
     /**
