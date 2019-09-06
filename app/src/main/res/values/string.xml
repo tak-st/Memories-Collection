@@ -2,4 +2,5 @@
 <resources>
     <string name="button">位置情報を付けて撮影する</string>
     <string name="description">camera picture</string>
+    <string name="version">ver.α1</string>
 </resources>

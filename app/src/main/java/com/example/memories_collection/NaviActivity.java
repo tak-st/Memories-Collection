@@ -2,7 +2,9 @@ package com.example.memories_collection;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,6 +29,7 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view != null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
             switch (view.getId()) {
                 case R.id.button:
                     finish();
@@ -35,16 +38,30 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
                     break;
 
                 case R.id.button2:
-                    intent=new Intent(NaviActivity.this,HistoryActivity.class);
-                    startActivity(intent);
+                    builder.setMessage("未実装です。すみません！");
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                        }
+                    });
+                    builder.show();
+                    //intent=new Intent(NaviActivity.this,HistoryActivity.class);
+                    //startActivity(intent);
                     break;
                 case R.id.button3:
                     intent=new Intent(NaviActivity.this,CameraActivity.class);
                     startActivity(intent);
                     break;
                 case R.id.button4:
-                    intent=new Intent(NaviActivity.this,collectionActivity.class);
-                    startActivity(intent);
+                    builder.setMessage("未実装です。すみません！");
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                        }
+                    });
+                    builder.show();
+                    //intent=new Intent(NaviActivity.this,collectionActivity.class);
+                    //startActivity(intent);
                     break;
                 case R.id.button5:
 
@@ -62,13 +79,14 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
                         editor.putInt("TEMPscl", tempScl);
                         int go=5000;
                         editor.putInt("COIN", go);
-                        int coin=data1.getInt("COIN",0);
+                        int coin = data1.getInt("COIN", 0);
                         System.out.println("sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"+coin);
                         editor.putInt("scl", 0);
                         editor.putInt("step", 95);
                         System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+tempcoin+","+tempScl+","+tempStep+","+data1.getInt("COIN",0)+","+data1.getInt("scl",0)+","+data1.getInt("step",0));
                         eten=1;
                         editor.putInt("ETEN",eten);
+                        editor.apply();
                         //位置情報
                         DateFormat form = new SimpleDateFormat("yyyy/MM/dd");
                         Date dd=new Date();
