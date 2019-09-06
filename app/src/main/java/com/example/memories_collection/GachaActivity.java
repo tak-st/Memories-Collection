@@ -16,9 +16,8 @@ import java.util.Random;
 public class GachaActivity extends AppCompatActivity {
 
     private static final String PREF_FILE_NAME = "DataSave";
-    SharedPreferences sharedPref = getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
-    SharedPreferences.Editor editor = sharedPref.edit();
-    private int coin = sharedPref.getInt("COIN", 0);
+    SharedPreferences sharedPref;
+    private int coin;
     private int power = 1;
     private double newitem = 1;
     private double powernewitem = 1;
@@ -26,6 +25,8 @@ public class GachaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPref = getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
+        coin = sharedPref.getInt("COIN", 0);
         setContentView(R.layout.activity_gacha);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //確率更新
@@ -132,6 +133,7 @@ public class GachaActivity extends AppCompatActivity {
         }
     }
     private void gachaClickEvent(View v) {
+        SharedPreferences.Editor editor = sharedPref.edit();
         //ガチャを行うメゾッド
         Random random = new Random();
         int randomValue = random.nextInt(1000);
