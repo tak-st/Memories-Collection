@@ -1,15 +1,15 @@
 package com.example.memories_collection;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -53,15 +53,8 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
                     startActivity(intent);
                     break;
                 case R.id.button4:
-                    builder.setMessage("未実装です。すみません！");
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-
-                        }
-                    });
-                    builder.show();
-                    //intent=new Intent(NaviActivity.this,collectionActivity.class);
-                    //startActivity(intent);
+                    intent = new Intent(NaviActivity.this, collectionActivity.class);
+                    startActivity(intent);
                     break;
                 case R.id.button5:
 
