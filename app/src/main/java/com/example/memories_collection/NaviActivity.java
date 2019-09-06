@@ -146,6 +146,7 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
                         editor.putInt("scl", tempScl);
                         eten=0;
                         editor.putInt("ETEN",eten);
+                        editor.apply();
                         intent = new Intent(NaviActivity.this, MainActivity.class);
                         startActivity(intent);
                     }
