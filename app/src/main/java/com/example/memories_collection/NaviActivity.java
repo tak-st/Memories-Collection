@@ -38,15 +38,8 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
                     break;
 
                 case R.id.button2:
-                    builder.setMessage("未実装です。すみません！");
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-
-                        }
-                    });
-                    builder.show();
-                    //intent=new Intent(NaviActivity.this,HistoryActivity.class);
-                    //startActivity(intent);
+                    intent = new Intent(NaviActivity.this, HistoryPhotoActivity.class);
+                    startActivity(intent);
                     break;
                 case R.id.button3:
                     intent=new Intent(NaviActivity.this,CameraActivity.class);
