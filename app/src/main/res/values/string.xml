@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="button">Button</string>
+    <string name="button">位置情報を付けて撮影する</string>
     <string name="description">camera picture</string>
+    <string name="version">ver.α1</string>
 </resources>
