@@ -1,2 +1,5 @@
 # Memories-Collection
-思い出を集めよう 思い出コレクション
+
+![daily](http://livedoor.blogimg.jp/makaimuranotami/imgs/1/b/1b1dab95.jpg)
+
+思い出を集めよう
