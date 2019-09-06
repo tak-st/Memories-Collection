@@ -79,13 +79,14 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
                         editor.putInt("TEMPscl", tempScl);
                         int go=5000;
                         editor.putInt("COIN", go);
-                        int coin=data1.getInt("COIN",0);
+                        int coin = data1.getInt("COIN", 0);
                         System.out.println("sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"+coin);
                         editor.putInt("scl", 0);
                         editor.putInt("step", 95);
                         System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+tempcoin+","+tempScl+","+tempStep+","+data1.getInt("COIN",0)+","+data1.getInt("scl",0)+","+data1.getInt("step",0));
                         eten=1;
                         editor.putInt("ETEN",eten);
+                        editor.apply();
                         //位置情報
                         DateFormat form = new SimpleDateFormat("yyyy/MM/dd");
                         Date dd=new Date();
