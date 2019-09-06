@@ -114,15 +114,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         //コイン獲得に必要な歩数
         TextView text11 = (TextView) findViewById((R.id.textView11));
         text11.setText(String.valueOf(needWalk));
-        findViewById(R.id.imageView).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //コインを1000枚得る
-                coin += 1000;
-                SharedPreferences.Editor editor = data1.edit();
-                editor.putInt("COIN", coin);
-            }
-        });
     }
 
     public void MoveStep() {
