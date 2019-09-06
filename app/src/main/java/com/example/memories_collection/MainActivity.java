@@ -67,7 +67,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     String path;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,7 +114,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         //コイン獲得に必要な歩数
         TextView text11 = (TextView) findViewById((R.id.textView11));
         text11.setText(String.valueOf(needWalk));
-
     }
 
     public void MoveStep() {
