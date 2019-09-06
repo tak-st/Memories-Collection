@@ -16,6 +16,7 @@ import android.view.Window;
 import android.widget.ImageView;
 
 public class collectionActivity extends AppCompatActivity {
+    //配列宣言
     private ImageView tapView[] = new ImageView[20];
 
     @Override
@@ -23,9 +24,10 @@ public class collectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection);
 
+        //ファイル内のデータ画像の読み込み
         SharedPreferences data = getSharedPreferences("Collection", Context.MODE_PRIVATE);
 
-        /*findViewById(R.id.imageView1).setVisibility(data.getInt("Item_1", 4));*/
+        findViewById(R.id.imageView1).setVisibility(data.getInt("Item_1", 4));
         findViewById(R.id.imageView2).setVisibility(data.getInt("Item_2", 4));
         findViewById(R.id.imageView3).setVisibility(data.getInt("Item_3", 4));
         findViewById(R.id.imageView4).setVisibility(data.getInt("Item_4", 4));
@@ -68,6 +70,7 @@ public class collectionActivity extends AppCompatActivity {
         tapView[18] = (ImageView) findViewById(R.id.imageView19);
         tapView[19] = (ImageView) findViewById(R.id.imageView20);
 
+        //画像タップしたときに拡大表示されるコード
         for (int n = 0; n < 20; n++) {
             switch (n) {
                 case 0:// 拡大対象のImageViewにタップ時のリスナーをセット
