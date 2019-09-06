@@ -95,6 +95,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                     1000, 50, this);
 
         }
+
         path = "/data/data/com.example.memories_collection/files/Location";
         coin = data1.getInt("COIN", 0);
         StepClear = data1.getInt("scl", 0);
@@ -116,6 +117,18 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         text11.setText(String.valueOf(needWalk));
     }
 
+    public void Reset() {
+        SharedPreferences.Editor editor = data1.edit();
+        editor.putInt("COIN", 0);
+        editor.putInt("step", 0);
+        editor.putInt("scl", 0);
+        editor.putInt("ETEN", 0);
+        editor.putInt("UNLOCK_ITEM", 0);
+        editor.putInt("TEMPCOIN", 0);
+        editor.putInt("TEMPstep", 0);
+        editor.putInt("TEMPscl", 0);
+        editor.apply();
+    }
     public void MoveStep() {
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
