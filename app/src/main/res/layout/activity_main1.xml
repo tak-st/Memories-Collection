@@ -154,7 +154,7 @@
 
             <TextView
                 android:id="@+id/textView5"
-                android:layout_width="23dp"
+                android:layout_width="112dp"
                 android:layout_height="wrap_content"
                 android:text=""
                 android:textColor="#F1E1E1"
