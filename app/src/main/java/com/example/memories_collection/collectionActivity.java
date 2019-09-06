@@ -13,18 +13,18 @@ import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.Display;
 import android.view.Window;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
-
 public class collectionActivity extends AppCompatActivity {
-
+    //配列宣言
+    private ImageView tapView[] = new ImageView[20];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection);
 
+        //ファイル内のデータ画像の読み込み
         SharedPreferences data = getSharedPreferences("Collection", Context.MODE_PRIVATE);
 
         findViewById(R.id.imageView1).setVisibility(data.getInt("Item_1", 4));
@@ -49,408 +49,570 @@ public class collectionActivity extends AppCompatActivity {
         findViewById(R.id.imageView20).setVisibility(data.getInt("Item_20", 4));
 
         // レイアウトオブジェクトから拡大対象のImageViewを取得
-        final ImageView tapView1 = (ImageView) findViewById(R.id.imageView1);
-        // 拡大対象のImageViewにタップ時のリスナーをセット
-        tapView1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ImageView imageView = new ImageView(collectionActivity.this);
-                Bitmap bitmap = ((BitmapDrawable) tapView1.getDrawable()).getBitmap();
-                imageView.setImageBitmap(bitmap);
-                // ディスプレイの幅を取得する（API 13以上）
-                Display display = getWindowManager().getDefaultDisplay();
-                Point size = new Point();
-                display.getSize(size);
-                int width = size.x;
+        tapView[0] = (ImageView) findViewById(R.id.imageView1);
+        tapView[1] = (ImageView) findViewById(R.id.imageView2);
+        tapView[2] = (ImageView) findViewById(R.id.imageView3);
+        tapView[3] = (ImageView) findViewById(R.id.imageView4);
+        tapView[4] = (ImageView) findViewById(R.id.imageView5);
+        tapView[5] = (ImageView) findViewById(R.id.imageView6);
+        tapView[6] = (ImageView) findViewById(R.id.imageView7);
+        tapView[7] = (ImageView) findViewById(R.id.imageView8);
+        tapView[8] = (ImageView) findViewById(R.id.imageView9);
+        tapView[9] = (ImageView) findViewById(R.id.imageView10);
+        tapView[10] = (ImageView) findViewById(R.id.imageView11);
+        tapView[11] = (ImageView) findViewById(R.id.imageView12);
+        tapView[12] = (ImageView) findViewById(R.id.imageView13);
+        tapView[13] = (ImageView) findViewById(R.id.imageView14);
+        tapView[14] = (ImageView) findViewById(R.id.imageView15);
+        tapView[15] = (ImageView) findViewById(R.id.imageView16);
+        tapView[16] = (ImageView) findViewById(R.id.imageView17);
+        tapView[17] = (ImageView) findViewById(R.id.imageView18);
+        tapView[18] = (ImageView) findViewById(R.id.imageView19);
+        tapView[19] = (ImageView) findViewById(R.id.imageView20);
 
-                float factor = width / bitmap.getWidth();
-                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                // ダイアログを作成する
-                Dialog dialog = new Dialog(collectionActivity.this);
-                // タイトルを非表示にする
-                dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(imageView);
-                dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
-                // ダイアログを表示する
-                dialog.show();
+        //画像タップしたときに拡大表示されるコード
+        for (int n = 0; n < 20; n++) {
+            switch (n) {
+                case 0:// 拡大対象のImageViewにタップ時のリスナーをセット
+                    tapView[0].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ImageView imageView = new ImageView(collectionActivity.this);
+                            Bitmap bitmap = ((BitmapDrawable) tapView[0].getDrawable()).getBitmap();
+                            imageView.setImageBitmap(bitmap);
+                            // ディスプレイの幅を取得する（API 13以上）
+                            Display display = getWindowManager().getDefaultDisplay();
+                            Point size = new Point();
+                            display.getSize(size);
+                            int width = size.x;
 
+                            float factor = width / bitmap.getWidth();
+                            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                            // ダイアログを作成する
+                            Dialog dialog = new Dialog(collectionActivity.this);
+                            // タイトルを非表示にする
+                            dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(imageView);
+                            dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
+                            // ダイアログを表示する
+                            dialog.show();
+
+                        }
+                    });
+                    break;
+                case 1:// 拡大対象のImageViewにタップ時のリスナーをセット
+                    tapView[1].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ImageView imageView = new ImageView(collectionActivity.this);
+                            Bitmap bitmap = ((BitmapDrawable) tapView[1].getDrawable()).getBitmap();
+                            imageView.setImageBitmap(bitmap);
+                            // ディスプレイの幅を取得する（API 13以上）
+                            Display display = getWindowManager().getDefaultDisplay();
+                            Point size = new Point();
+                            display.getSize(size);
+                            int width = size.x;
+
+                            float factor = width / bitmap.getWidth();
+                            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                            // ダイアログを作成する
+                            Dialog dialog = new Dialog(collectionActivity.this);
+                            // タイトルを非表示にする
+                            dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(imageView);
+                            dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
+                            // ダイアログを表示する
+                            dialog.show();
+
+                        }
+                    });
+                    break;
+                case 2:// 拡大対象のImageViewにタップ時のリスナーをセット
+                    tapView[2].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ImageView imageView = new ImageView(collectionActivity.this);
+                            Bitmap bitmap = ((BitmapDrawable) tapView[2].getDrawable()).getBitmap();
+                            imageView.setImageBitmap(bitmap);
+                            // ディスプレイの幅を取得する（API 13以上）
+                            Display display = getWindowManager().getDefaultDisplay();
+                            Point size = new Point();
+                            display.getSize(size);
+                            int width = size.x;
+
+                            float factor = width / bitmap.getWidth();
+                            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                            // ダイアログを作成する
+                            Dialog dialog = new Dialog(collectionActivity.this);
+                            // タイトルを非表示にする
+                            dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(imageView);
+                            dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
+                            // ダイアログを表示する
+                            dialog.show();
+
+                        }
+                    });
+                    break;
+                case 3:// 拡大対象のImageViewにタップ時のリスナーをセット
+                    tapView[3].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ImageView imageView = new ImageView(collectionActivity.this);
+                            Bitmap bitmap = ((BitmapDrawable) tapView[3].getDrawable()).getBitmap();
+                            imageView.setImageBitmap(bitmap);
+                            // ディスプレイの幅を取得する（API 13以上）
+                            Display display = getWindowManager().getDefaultDisplay();
+                            Point size = new Point();
+                            display.getSize(size);
+                            int width = size.x;
+
+                            float factor = width / bitmap.getWidth();
+                            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                            // ダイアログを作成する
+                            Dialog dialog = new Dialog(collectionActivity.this);
+                            // タイトルを非表示にする
+                            dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(imageView);
+                            dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
+                            // ダイアログを表示する
+                            dialog.show();
+
+                        }
+                    });
+                    break;
+                case 4:// 拡大対象のImageViewにタップ時のリスナーをセット
+                    tapView[4].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ImageView imageView = new ImageView(collectionActivity.this);
+                            Bitmap bitmap = ((BitmapDrawable) tapView[4].getDrawable()).getBitmap();
+                            imageView.setImageBitmap(bitmap);
+                            // ディスプレイの幅を取得する（API 13以上）
+                            Display display = getWindowManager().getDefaultDisplay();
+                            Point size = new Point();
+                            display.getSize(size);
+                            int width = size.x;
+
+                            float factor = width / bitmap.getWidth();
+                            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                            // ダイアログを作成する
+                            Dialog dialog = new Dialog(collectionActivity.this);
+                            // タイトルを非表示にする
+                            dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(imageView);
+                            dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
+                            // ダイアログを表示する
+                            dialog.show();
+
+                        }
+                    });
+                    break;
+                case 5:// 拡大対象のImageViewにタップ時のリスナーをセット
+                    tapView[5].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ImageView imageView = new ImageView(collectionActivity.this);
+                            Bitmap bitmap = ((BitmapDrawable) tapView[5].getDrawable()).getBitmap();
+                            imageView.setImageBitmap(bitmap);
+                            // ディスプレイの幅を取得する（API 13以上）
+                            Display display = getWindowManager().getDefaultDisplay();
+                            Point size = new Point();
+                            display.getSize(size);
+                            int width = size.x;
+
+                            float factor = width / bitmap.getWidth();
+                            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                            // ダイアログを作成する
+                            Dialog dialog = new Dialog(collectionActivity.this);
+                            // タイトルを非表示にする
+                            dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(imageView);
+                            dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
+                            // ダイアログを表示する
+                            dialog.show();
+
+                        }
+                    });
+                    break;
+                case 6:// 拡大対象のImageViewにタップ時のリスナーをセット
+                    tapView[6].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ImageView imageView = new ImageView(collectionActivity.this);
+                            Bitmap bitmap = ((BitmapDrawable) tapView[6].getDrawable()).getBitmap();
+                            imageView.setImageBitmap(bitmap);
+                            // ディスプレイの幅を取得する（API 13以上）
+                            Display display = getWindowManager().getDefaultDisplay();
+                            Point size = new Point();
+                            display.getSize(size);
+                            int width = size.x;
+
+                            float factor = width / bitmap.getWidth();
+                            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                            // ダイアログを作成する
+                            Dialog dialog = new Dialog(collectionActivity.this);
+                            // タイトルを非表示にする
+                            dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(imageView);
+                            dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
+                            // ダイアログを表示する
+                            dialog.show();
+
+                        }
+                    });
+                    break;
+                case 7:// 拡大対象のImageViewにタップ時のリスナーをセット
+                    tapView[7].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ImageView imageView = new ImageView(collectionActivity.this);
+                            Bitmap bitmap = ((BitmapDrawable) tapView[7].getDrawable()).getBitmap();
+                            imageView.setImageBitmap(bitmap);
+                            // ディスプレイの幅を取得する（API 13以上）
+                            Display display = getWindowManager().getDefaultDisplay();
+                            Point size = new Point();
+                            display.getSize(size);
+                            int width = size.x;
+
+                            float factor = width / bitmap.getWidth();
+                            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                            // ダイアログを作成する
+                            Dialog dialog = new Dialog(collectionActivity.this);
+                            // タイトルを非表示にする
+                            dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(imageView);
+                            dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
+                            // ダイアログを表示する
+                            dialog.show();
+
+                        }
+                    });
+                    break;
+                case 8:// 拡大対象のImageViewにタップ時のリスナーをセット
+                    tapView[8].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ImageView imageView = new ImageView(collectionActivity.this);
+                            Bitmap bitmap = ((BitmapDrawable) tapView[8].getDrawable()).getBitmap();
+                            imageView.setImageBitmap(bitmap);
+                            // ディスプレイの幅を取得する（API 13以上）
+                            Display display = getWindowManager().getDefaultDisplay();
+                            Point size = new Point();
+                            display.getSize(size);
+                            int width = size.x;
+
+                            float factor = width / bitmap.getWidth();
+                            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                            // ダイアログを作成する
+                            Dialog dialog = new Dialog(collectionActivity.this);
+                            // タイトルを非表示にする
+                            dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(imageView);
+                            dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
+                            // ダイアログを表示する
+                            dialog.show();
+
+                        }
+                    });
+                    break;
+                case 9:// 拡大対象のImageViewにタップ時のリスナーをセット
+                    tapView[9].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ImageView imageView = new ImageView(collectionActivity.this);
+                            Bitmap bitmap = ((BitmapDrawable) tapView[9].getDrawable()).getBitmap();
+                            imageView.setImageBitmap(bitmap);
+                            // ディスプレイの幅を取得する（API 13以上）
+                            Display display = getWindowManager().getDefaultDisplay();
+                            Point size = new Point();
+                            display.getSize(size);
+                            int width = size.x;
+
+                            float factor = width / bitmap.getWidth();
+                            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                            // ダイアログを作成する
+                            Dialog dialog = new Dialog(collectionActivity.this);
+                            // タイトルを非表示にする
+                            dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(imageView);
+                            dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
+                            // ダイアログを表示する
+                            dialog.show();
+
+                        }
+                    });
+                    break;
+                case 10:// 拡大対象のImageViewにタップ時のリスナーをセット
+                    tapView[10].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ImageView imageView = new ImageView(collectionActivity.this);
+                            Bitmap bitmap = ((BitmapDrawable) tapView[10].getDrawable()).getBitmap();
+                            imageView.setImageBitmap(bitmap);
+                            // ディスプレイの幅を取得する（API 13以上）
+                            Display display = getWindowManager().getDefaultDisplay();
+                            Point size = new Point();
+                            display.getSize(size);
+                            int width = size.x;
+
+                            float factor = width / bitmap.getWidth();
+                            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                            // ダイアログを作成する
+                            Dialog dialog = new Dialog(collectionActivity.this);
+                            // タイトルを非表示にする
+                            dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(imageView);
+                            dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
+                            // ダイアログを表示する
+                            dialog.show();
+
+                        }
+                    });
+                    break;
+                case 11:// 拡大対象のImageViewにタップ時のリスナーをセット
+                    tapView[11].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ImageView imageView = new ImageView(collectionActivity.this);
+                            Bitmap bitmap = ((BitmapDrawable) tapView[11].getDrawable()).getBitmap();
+                            imageView.setImageBitmap(bitmap);
+                            // ディスプレイの幅を取得する（API 13以上）
+                            Display display = getWindowManager().getDefaultDisplay();
+                            Point size = new Point();
+                            display.getSize(size);
+                            int width = size.x;
+
+                            float factor = width / bitmap.getWidth();
+                            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                            // ダイアログを作成する
+                            Dialog dialog = new Dialog(collectionActivity.this);
+                            // タイトルを非表示にする
+                            dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(imageView);
+                            dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
+                            // ダイアログを表示する
+                            dialog.show();
+
+                        }
+                    });
+                    break;
+                case 12:// 拡大対象のImageViewにタップ時のリスナーをセット
+                    tapView[12].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ImageView imageView = new ImageView(collectionActivity.this);
+                            Bitmap bitmap = ((BitmapDrawable) tapView[12].getDrawable()).getBitmap();
+                            imageView.setImageBitmap(bitmap);
+                            // ディスプレイの幅を取得する（API 13以上）
+                            Display display = getWindowManager().getDefaultDisplay();
+                            Point size = new Point();
+                            display.getSize(size);
+                            int width = size.x;
+
+                            float factor = width / bitmap.getWidth();
+                            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                            // ダイアログを作成する
+                            Dialog dialog = new Dialog(collectionActivity.this);
+                            // タイトルを非表示にする
+                            dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(imageView);
+                            dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
+                            // ダイアログを表示する
+                            dialog.show();
+
+                        }
+                    });
+                    break;
+                case 13:// 拡大対象のImageViewにタップ時のリスナーをセット
+                    tapView[13].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ImageView imageView = new ImageView(collectionActivity.this);
+                            Bitmap bitmap = ((BitmapDrawable) tapView[13].getDrawable()).getBitmap();
+                            imageView.setImageBitmap(bitmap);
+                            // ディスプレイの幅を取得する（API 13以上）
+                            Display display = getWindowManager().getDefaultDisplay();
+                            Point size = new Point();
+                            display.getSize(size);
+                            int width = size.x;
+
+                            float factor = width / bitmap.getWidth();
+                            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                            // ダイアログを作成する
+                            Dialog dialog = new Dialog(collectionActivity.this);
+                            // タイトルを非表示にする
+                            dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(imageView);
+                            dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
+                            // ダイアログを表示する
+                            dialog.show();
+
+                        }
+                    });
+                    break;
+                case 14:// 拡大対象のImageViewにタップ時のリスナーをセット
+                    tapView[14].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ImageView imageView = new ImageView(collectionActivity.this);
+                            Bitmap bitmap = ((BitmapDrawable) tapView[14].getDrawable()).getBitmap();
+                            imageView.setImageBitmap(bitmap);
+                            // ディスプレイの幅を取得する（API 13以上）
+                            Display display = getWindowManager().getDefaultDisplay();
+                            Point size = new Point();
+                            display.getSize(size);
+                            int width = size.x;
+
+                            float factor = width / bitmap.getWidth();
+                            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                            // ダイアログを作成する
+                            Dialog dialog = new Dialog(collectionActivity.this);
+                            // タイトルを非表示にする
+                            dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(imageView);
+                            dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
+                            // ダイアログを表示する
+                            dialog.show();
+
+                        }
+                    });
+                    break;
+                case 15:// 拡大対象のImageViewにタップ時のリスナーをセット
+                    tapView[15].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ImageView imageView = new ImageView(collectionActivity.this);
+                            Bitmap bitmap = ((BitmapDrawable) tapView[15].getDrawable()).getBitmap();
+                            imageView.setImageBitmap(bitmap);
+                            // ディスプレイの幅を取得する（API 13以上）
+                            Display display = getWindowManager().getDefaultDisplay();
+                            Point size = new Point();
+                            display.getSize(size);
+                            int width = size.x;
+
+                            float factor = width / bitmap.getWidth();
+                            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                            // ダイアログを作成する
+                            Dialog dialog = new Dialog(collectionActivity.this);
+                            // タイトルを非表示にする
+                            dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(imageView);
+                            dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
+                            // ダイアログを表示する
+                            dialog.show();
+
+                        }
+                    });
+                    break;
+                case 16:// 拡大対象のImageViewにタップ時のリスナーをセット
+                    tapView[16].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ImageView imageView = new ImageView(collectionActivity.this);
+                            Bitmap bitmap = ((BitmapDrawable) tapView[16].getDrawable()).getBitmap();
+                            imageView.setImageBitmap(bitmap);
+                            // ディスプレイの幅を取得する（API 13以上）
+                            Display display = getWindowManager().getDefaultDisplay();
+                            Point size = new Point();
+                            display.getSize(size);
+                            int width = size.x;
+
+                            float factor = width / bitmap.getWidth();
+                            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                            // ダイアログを作成する
+                            Dialog dialog = new Dialog(collectionActivity.this);
+                            // タイトルを非表示にする
+                            dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(imageView);
+                            dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
+                            // ダイアログを表示する
+                            dialog.show();
+
+                        }
+                    });
+                    break;
+                case 17:// 拡大対象のImageViewにタップ時のリスナーをセット
+                    tapView[17].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ImageView imageView = new ImageView(collectionActivity.this);
+                            Bitmap bitmap = ((BitmapDrawable) tapView[17].getDrawable()).getBitmap();
+                            imageView.setImageBitmap(bitmap);
+                            // ディスプレイの幅を取得する（API 13以上）
+                            Display display = getWindowManager().getDefaultDisplay();
+                            Point size = new Point();
+                            display.getSize(size);
+                            int width = size.x;
+
+                            float factor = width / bitmap.getWidth();
+                            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                            // ダイアログを作成する
+                            Dialog dialog = new Dialog(collectionActivity.this);
+                            // タイトルを非表示にする
+                            dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(imageView);
+                            dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
+                            // ダイアログを表示する
+                            dialog.show();
+
+                        }
+                    });
+                    break;
+                case 18:// 拡大対象のImageViewにタップ時のリスナーをセット
+                    tapView[18].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ImageView imageView = new ImageView(collectionActivity.this);
+                            Bitmap bitmap = ((BitmapDrawable) tapView[18].getDrawable()).getBitmap();
+                            imageView.setImageBitmap(bitmap);
+                            // ディスプレイの幅を取得する（API 13以上）
+                            Display display = getWindowManager().getDefaultDisplay();
+                            Point size = new Point();
+                            display.getSize(size);
+                            int width = size.x;
+
+                            float factor = width / bitmap.getWidth();
+                            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                            // ダイアログを作成する
+                            Dialog dialog = new Dialog(collectionActivity.this);
+                            // タイトルを非表示にする
+                            dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(imageView);
+                            dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
+                            // ダイアログを表示する
+                            dialog.show();
+
+                        }
+                    });
+                    break;
+                case 19:// 拡大対象のImageViewにタップ時のリスナーをセット
+                    tapView[19].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ImageView imageView = new ImageView(collectionActivity.this);
+                            Bitmap bitmap = ((BitmapDrawable) tapView[19].getDrawable()).getBitmap();
+                            imageView.setImageBitmap(bitmap);
+                            // ディスプレイの幅を取得する（API 13以上）
+                            Display display = getWindowManager().getDefaultDisplay();
+                            Point size = new Point();
+                            display.getSize(size);
+                            int width = size.x;
+
+                            float factor = width / bitmap.getWidth();
+                            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                            // ダイアログを作成する
+                            Dialog dialog = new Dialog(collectionActivity.this);
+                            // タイトルを非表示にする
+                            dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+                            dialog.setContentView(imageView);
+                            dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
+                            // ダイアログを表示する
+                            dialog.show();
+
+                        }
+                    });
             }
-        });
-
-        final ImageView tapView2 = (ImageView) findViewById(R.id.imageView2);
-        // 拡大対象のImageViewにタップ時のリスナーをセット
-        tapView2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ImageView imageView = new ImageView(collectionActivity.this);
-                Bitmap bitmap = ((BitmapDrawable) tapView2.getDrawable()).getBitmap();
-                imageView.setImageBitmap(bitmap);
-                // ディスプレイの幅を取得する（API 13以上）
-                Display display = getWindowManager().getDefaultDisplay();
-                Point size = new Point();
-                display.getSize(size);
-                int width = size.x;
-
-                float factor = width / bitmap.getWidth();
-                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                // ダイアログを作成する
-                Dialog dialog = new Dialog(collectionActivity.this);
-                // タイトルを非表示にする
-                dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(imageView);
-                dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
-                // ダイアログを表示する
-                dialog.show();
-
-            }
-        });
-
-        final ImageView tapView3 = (ImageView) findViewById(R.id.imageView3);
-        // 拡大対象のImageViewにタップ時のリスナーをセット
-        tapView3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ImageView imageView = new ImageView(collectionActivity.this);
-                Bitmap bitmap = ((BitmapDrawable) tapView3.getDrawable()).getBitmap();
-                imageView.setImageBitmap(bitmap);
-                // ディスプレイの幅を取得する（API 13以上）
-                Display display = getWindowManager().getDefaultDisplay();
-                Point size = new Point();
-                display.getSize(size);
-                int width = size.x;
-
-                float factor = width / bitmap.getWidth();
-                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                // ダイアログを作成する
-                Dialog dialog = new Dialog(collectionActivity.this);
-                // タイトルを非表示にする
-                dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(imageView);
-                dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
-                // ダイアログを表示する
-                dialog.show();
-
-            }
-        });
-
-        final ImageView tapView4 = (ImageView) findViewById(R.id.imageView4);
-        // 拡大対象のImageViewにタップ時のリスナーをセット
-        tapView4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ImageView imageView = new ImageView(collectionActivity.this);
-                Bitmap bitmap = ((BitmapDrawable) tapView4.getDrawable()).getBitmap();
-                imageView.setImageBitmap(bitmap);
-                // ディスプレイの幅を取得する（API 13以上）
-                Display display = getWindowManager().getDefaultDisplay();
-                Point size = new Point();
-                display.getSize(size);
-                int width = size.x;
-
-                float factor = width / bitmap.getWidth();
-                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                // ダイアログを作成する
-                Dialog dialog = new Dialog(collectionActivity.this);
-                // タイトルを非表示にする
-                dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(imageView);
-                dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
-                // ダイアログを表示する
-                dialog.show();
-
-            }
-        });
-
-        final ImageView tapView5 = (ImageView) findViewById(R.id.imageView5);
-        // 拡大対象のImageViewにタップ時のリスナーをセット
-        tapView5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ImageView imageView = new ImageView(collectionActivity.this);
-                Bitmap bitmap = ((BitmapDrawable) tapView5.getDrawable()).getBitmap();
-                imageView.setImageBitmap(bitmap);
-                // ディスプレイの幅を取得する（API 13以上）
-                Display display = getWindowManager().getDefaultDisplay();
-                Point size = new Point();
-                display.getSize(size);
-                int width = size.x;
-
-                float factor = width / bitmap.getWidth();
-                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                // ダイアログを作成する
-                Dialog dialog = new Dialog(collectionActivity.this);
-                // タイトルを非表示にする
-                dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(imageView);
-                dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
-                // ダイアログを表示する
-                dialog.show();
-
-            }
-        });
-
-        final ImageView tapView6 = (ImageView) findViewById(R.id.imageView6);
-        // 拡大対象のImageViewにタップ時のリスナーをセット
-        tapView6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ImageView imageView = new ImageView(collectionActivity.this);
-                Bitmap bitmap = ((BitmapDrawable) tapView6.getDrawable()).getBitmap();
-                imageView.setImageBitmap(bitmap);
-                // ディスプレイの幅を取得する（API 13以上）
-                Display display = getWindowManager().getDefaultDisplay();
-                Point size = new Point();
-                display.getSize(size);
-                int width = size.x;
-
-                float factor = width / bitmap.getWidth();
-                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                // ダイアログを作成する
-                Dialog dialog = new Dialog(collectionActivity.this);
-                // タイトルを非表示にする
-                dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(imageView);
-                dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
-                // ダイアログを表示する
-                dialog.show();
-
-            }
-        });
-
-        final ImageView tapView7 = (ImageView) findViewById(R.id.imageView7);
-        // 拡大対象のImageViewにタップ時のリスナーをセット
-        tapView7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ImageView imageView = new ImageView(collectionActivity.this);
-                Bitmap bitmap = ((BitmapDrawable) tapView7.getDrawable()).getBitmap();
-                imageView.setImageBitmap(bitmap);
-                // ディスプレイの幅を取得する（API 13以上）
-                Display display = getWindowManager().getDefaultDisplay();
-                Point size = new Point();
-                display.getSize(size);
-                int width = size.x;
-
-                float factor = width / bitmap.getWidth();
-                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                // ダイアログを作成する
-                Dialog dialog = new Dialog(collectionActivity.this);
-                // タイトルを非表示にする
-                dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(imageView);
-                dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
-                // ダイアログを表示する
-                dialog.show();
-
-            }
-        });
-
-        final ImageView tapView8 = (ImageView) findViewById(R.id.imageView8);
-        // 拡大対象のImageViewにタップ時のリスナーをセット
-        tapView8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ImageView imageView = new ImageView(collectionActivity.this);
-                Bitmap bitmap = ((BitmapDrawable) tapView8.getDrawable()).getBitmap();
-                imageView.setImageBitmap(bitmap);
-                // ディスプレイの幅を取得する（API 13以上）
-                Display display = getWindowManager().getDefaultDisplay();
-                Point size = new Point();
-                display.getSize(size);
-                int width = size.x;
-
-                float factor = width / bitmap.getWidth();
-                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                // ダイアログを作成する
-                Dialog dialog = new Dialog(collectionActivity.this);
-                // タイトルを非表示にする
-                dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(imageView);
-                dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
-                // ダイアログを表示する
-                dialog.show();
-
-            }
-        });
-
-        final ImageView tapView9 = (ImageView) findViewById(R.id.imageView9);
-        // 拡大対象のImageViewにタップ時のリスナーをセット
-        tapView9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ImageView imageView = new ImageView(collectionActivity.this);
-                Bitmap bitmap = ((BitmapDrawable) tapView9.getDrawable()).getBitmap();
-                imageView.setImageBitmap(bitmap);
-                // ディスプレイの幅を取得する（API 13以上）
-                Display display = getWindowManager().getDefaultDisplay();
-                Point size = new Point();
-                display.getSize(size);
-                int width = size.x;
-
-                float factor = width / bitmap.getWidth();
-                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                // ダイアログを作成する
-                Dialog dialog = new Dialog(collectionActivity.this);
-                // タイトルを非表示にする
-                dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(imageView);
-                dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
-                // ダイアログを表示する
-                dialog.show();
-
-            }
-        });
-
-        final ImageView tapView10 = (ImageView) findViewById(R.id.imageView10);
-        // 拡大対象のImageViewにタップ時のリスナーをセット
-        tapView10.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ImageView imageView = new ImageView(collectionActivity.this);
-                Bitmap bitmap = ((BitmapDrawable) tapView10.getDrawable()).getBitmap();
-                imageView.setImageBitmap(bitmap);
-                // ディスプレイの幅を取得する（API 13以上）
-                Display display = getWindowManager().getDefaultDisplay();
-                Point size = new Point();
-                display.getSize(size);
-                int width = size.x;
-
-                float factor = width / bitmap.getWidth();
-                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                // ダイアログを作成する
-                Dialog dialog = new Dialog(collectionActivity.this);
-                // タイトルを非表示にする
-                dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(imageView);
-                dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
-                // ダイアログを表示する
-                dialog.show();
-
-            }
-        });
-
-        final ImageView tapView11 = (ImageView) findViewById(R.id.imageView11);
-        // 拡大対象のImageViewにタップ時のリスナーをセット
-        tapView11.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ImageView imageView = new ImageView(collectionActivity.this);
-                Bitmap bitmap = ((BitmapDrawable) tapView11.getDrawable()).getBitmap();
-                imageView.setImageBitmap(bitmap);
-                // ディスプレイの幅を取得する（API 13以上）
-                Display display = getWindowManager().getDefaultDisplay();
-                Point size = new Point();
-                display.getSize(size);
-                int width = size.x;
-
-                float factor = width / bitmap.getWidth();
-                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                // ダイアログを作成する
-                Dialog dialog = new Dialog(collectionActivity.this);
-                // タイトルを非表示にする
-                dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(imageView);
-                dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
-                // ダイアログを表示する
-                dialog.show();
-
-            }
-        });
-
-        final ImageView tapView12 = (ImageView) findViewById(R.id.imageView12);
-        // 拡大対象のImageViewにタップ時のリスナーをセット
-        tapView12.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ImageView imageView = new ImageView(collectionActivity.this);
-                Bitmap bitmap = ((BitmapDrawable) tapView12.getDrawable()).getBitmap();
-                imageView.setImageBitmap(bitmap);
-                // ディスプレイの幅を取得する（API 13以上）
-                Display display = getWindowManager().getDefaultDisplay();
-                Point size = new Point();
-                display.getSize(size);
-                int width = size.x;
-
-                float factor = width / bitmap.getWidth();
-                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                // ダイアログを作成する
-                Dialog dialog = new Dialog(collectionActivity.this);
-                // タイトルを非表示にする
-                dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(imageView);
-                dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
-                // ダイアログを表示する
-                dialog.show();
-
-            }
-        });
-
-        final ImageView tapView13 = (ImageView) findViewById(R.id.imageView13);
-        // 拡大対象のImageViewにタップ時のリスナーをセット
-        tapView13.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ImageView imageView = new ImageView(collectionActivity.this);
-                Bitmap bitmap = ((BitmapDrawable) tapView13.getDrawable()).getBitmap();
-                imageView.setImageBitmap(bitmap);
-                // ディスプレイの幅を取得する（API 13以上）
-                Display display = getWindowManager().getDefaultDisplay();
-                Point size = new Point();
-                display.getSize(size);
-                int width = size.x;
-
-                float factor = width / bitmap.getWidth();
-                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                // ダイアログを作成する
-                Dialog dialog = new Dialog(collectionActivity.this);
-                // タイトルを非表示にする
-                dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(imageView);
-                dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
-                // ダイアログを表示する
-                dialog.show();
-
-            }
-        });
-
-        final ImageView tapView14 = (ImageView) findViewById(R.id.imageView14);
-        // 拡大対象のImageViewにタップ時のリスナーをセット
-        tapView14.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ImageView imageView = new ImageView(collectionActivity.this);
-                Bitmap bitmap = ((BitmapDrawable) tapView14.getDrawable()).getBitmap();
-                imageView.setImageBitmap(bitmap);
-                // ディスプレイの幅を取得する（API 13以上）
-                Display display = getWindowManager().getDefaultDisplay();
-                Point size = new Point();
-                display.getSize(size);
-                int width = size.x;
-
-                float factor = width / bitmap.getWidth();
-                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                // ダイアログを作成する
-                Dialog dialog = new Dialog(collectionActivity.this);
-                // タイトルを非表示にする
-                dialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(imageView);
-                dialog.getWindow().setLayout((int) (bitmap.getWidth() * factor), (int) (bitmap.getHeight() * factor));
-                // ダイアログを表示する
-                dialog.show();
-
-            }
-        });
-
-        /*ImageButton button;
-        ImageView iv1;
-            public void onClick(View v) {
-                if(v == button){
-                    Array typedArray = getResources().obtainTypedArray(R.array.default_albumart);
-       　　         int i = (int) (Math.floor(Math.random() * 20));
-                    Drawable drawable = typedArray.getDrawable(i);
-                    iv1.setImageDrawable(drawable);}
-            }*/
-
-
+        }
     }
 }
