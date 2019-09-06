@@ -25,7 +25,7 @@ public class collectionActivity extends AppCompatActivity {
 
         SharedPreferences data = getSharedPreferences("Collection", Context.MODE_PRIVATE);
 
-       /* findViewById(R.id.imageView1).setVisibility(data.getInt("Item_1", 4));
+        findViewById(R.id.imageView1).setVisibility(data.getInt("Item_1", 4));
         findViewById(R.id.imageView2).setVisibility(data.getInt("Item_2", 4));
         findViewById(R.id.imageView3).setVisibility(data.getInt("Item_3", 4));
         findViewById(R.id.imageView4).setVisibility(data.getInt("Item_4", 4));
@@ -44,7 +44,7 @@ public class collectionActivity extends AppCompatActivity {
         findViewById(R.id.imageView17).setVisibility(data.getInt("Item_17", 4));
         findViewById(R.id.imageView18).setVisibility(data.getInt("Item_18", 4));
         findViewById(R.id.imageView19).setVisibility(data.getInt("Item_19", 4));
-        findViewById(R.id.imageView20).setVisibility(data.getInt("Item_20", 4));*/
+        findViewById(R.id.imageView20).setVisibility(data.getInt("Item_20", 4));
 
         // レイアウトオブジェクトから拡大対象のImageViewを取得
         tapView[0] = (ImageView) findViewById(R.id.imageView1);
