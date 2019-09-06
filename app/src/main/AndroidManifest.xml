@@ -22,7 +22,7 @@
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NaviActivity"></activity>
+        <activity android:name=".NaviActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -79,6 +79,13 @@
             android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.History" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".HistoryPhotoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.HistoryPhoto" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
