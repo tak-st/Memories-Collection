@@ -25,7 +25,7 @@ public class collectionActivity extends AppCompatActivity {
 
         SharedPreferences data = getSharedPreferences("Collection", Context.MODE_PRIVATE);
 
-        findViewById(R.id.imageView1).setVisibility(data.getInt("Item_1", 4));
+        /*findViewById(R.id.imageView1).setVisibility(data.getInt("Item_1", 4));*/
         findViewById(R.id.imageView2).setVisibility(data.getInt("Item_2", 4));
         findViewById(R.id.imageView3).setVisibility(data.getInt("Item_3", 4));
         findViewById(R.id.imageView4).setVisibility(data.getInt("Item_4", 4));
