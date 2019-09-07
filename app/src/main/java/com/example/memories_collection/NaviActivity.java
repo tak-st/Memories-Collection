@@ -62,7 +62,7 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
                         editor.putInt("TEMPstep", tempStep);
                         int tempScl = data1.getInt("scl", 0);
                         editor.putInt("TEMPscl", tempScl);
-                        int go=5000;
+                        int go = 50;
                         editor.putInt("COIN", go);
                         int coin = data1.getInt("COIN", 0);
                         System.out.println("sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"+coin);

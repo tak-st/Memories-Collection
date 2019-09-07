@@ -13,6 +13,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
@@ -39,6 +40,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Timer;
 
 
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener, LocationListener {
@@ -65,6 +67,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     Date dd;
     SharedPreferences data1;
     String path;
+    Timer timer;
 
 
     @Override
@@ -115,6 +118,20 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         //コイン獲得に必要な歩数
         TextView text11 = (TextView) findViewById((R.id.textView11));
         text11.setText(String.valueOf(needWalk));
+        if (data1.getInt("ETEN", 0) == 1) {
+            final Handler handler = new Handler();
+            final Runnable r = new Runnable() {
+                int count = 0;
+
+                @Override
+                public void run() {
+                    timerstep();
+                    handler.postDelayed(this, 784);
+                }
+            };
+            handler.post(r);
+
+        }
     }
 
     public void Reset() {
@@ -272,8 +289,13 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
             FileWriter fw = new FileWriter(path);
             BufferedWriter bw = new BufferedWriter(fw);
             String s = "";
-            late = location.getLatitude();
-            lon = location.getLongitude();
+            if (data1.getInt("ETEN", 0) == 0) {
+                late = location.getLatitude();
+                lon = location.getLongitude();
+            } else {
+                late = 34.706472;
+                lon = 135.503257;
+            }
 
             if (info % 1 == 0) {
                 long time = location.getTime();
@@ -387,5 +409,62 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onProviderDisabled(String provider) {
 
+    }
+
+    public void timerstep() {
+
+
+        //アプリ起動が初めてか
+        SharedPreferences.Editor editor = data1.edit();
+        dat = data1.getInt("datSave", 0);
+        if (dat == 0) {
+            editor.putInt("ETEN", 0);
+            d1 = new Date();
+            path = "/data/data/com.example.memories_collection/files/Location" + form.format(d1) + ".txt";
+            editor.putString("d1Save", form.format(d1));
+            editor.apply();
+            dat = 1;
+            editor.putInt("datSave", dat);
+            editor.apply();
+        }
+        Date d2 = new Date();
+        //前回の起動から日が変わっているか
+        String d = data1.getString("d1Save", "");
+        if (d.equals(form.format(d2))) {
+            dd = new Date();
+            path = "/data/data/com.example.memories_collection/files/Location" + form.format(dd) + ".txt";
+            System.out.println(path);
+        } else {
+            Step = 0;
+            editor.putInt("step", Step);
+            StepClear = 0;
+            editor.putInt("scl", StepClear);
+            d1 = d2;
+            editor.putString("d1Save", form.format(d1));
+        }
+
+        Step++;
+        //総合歩数
+        editor.putInt("step", Step);
+        Step2 = Step - (needWalk * StepClear);
+        if (Step2 >= needWalk) {
+            StepClear++;
+            coin++;
+            editor.putInt("COIN", coin);
+            editor.putInt("scl", StepClear);
+        }
+        editor.apply();
+        TextView text22 = (TextView) findViewById((R.id.textView2_1));
+        text22.setText(String.valueOf(Step));
+        //コイン枚数
+        TextView text5 = (TextView) findViewById((R.id.textView5));
+        text5.setText(String.valueOf(coin));
+        //総合歩数からコイン獲得に使用済みの歩数をマイナスした数値
+        //100歩につき1コイン
+        TextView text9 = (TextView) findViewById((R.id.textView9));
+        text9.setText(String.valueOf(Step2));
+        //コイン獲得に必要な歩数
+        TextView text11 = (TextView) findViewById((R.id.textView11));
+        text11.setText(String.valueOf(needWalk));
     }
 }
