@@ -2,7 +2,6 @@ package com.example.memories_collection;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -116,7 +115,7 @@ public class NaviActivity extends AppCompatActivity implements View.OnClickListe
 
                         } catch (IOException e) {
                             Toast toast = Toast.makeText(this,
-                                    "無理...", Toast.LENGTH_SHORT);
+                                    "IOException！", Toast.LENGTH_SHORT);
                             toast.show();
                         }
 
