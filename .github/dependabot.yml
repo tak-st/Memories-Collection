@@ -1,0 +1,18 @@
+version: 2
+updates:
+- package-ecosystem: gradle
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "09:00"
+  open-pull-requests-limit: 20
+  reviewers:
+  - tak-st
+  ignore:
+  - dependency-name: com.android.tools.build:gradle
+    versions:
+    - 4.1.2
+  - dependency-name: junit:junit
+    versions:
+    - 4.13.1
+  rebase-strategy: disabled
